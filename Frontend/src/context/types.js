@@ -1,0 +1,2 @@
+export const SET_IS_LOADING = 'SET_IS_LOADING';
+export const SET_CHANGE_PATH = 'SRT_CHANGE_PATH'
