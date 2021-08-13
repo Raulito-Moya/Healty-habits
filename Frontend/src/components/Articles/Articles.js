@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
+import getActiveArticles from "../../API/getActiveArticles"
 import { articles } from "../../assess/mock"
 import { useStorage } from "../../context/useStorage"
 import LoadingPage from "../UX/LoadingPage"
@@ -23,32 +24,34 @@ align-items: center;
  
 const Articles = () => {
 
+  
+   const {articlesStorage, setArticles} = useStorage()
+   console.log(articlesStorage);
+   
+   useEffect(()=>{
+   setArticles()
+
+
+   },[])
+
+
   const {isLoading, setisLoading} = useStorage() 
-  const [show,setShow] = useState(false)
+  const [show, setShow] = useState(false)
   const elementref =  useRef()
    console.log(isLoading);
  
-  
+   
    
  return(
 
-
-    
-  
      <ArticlesRun >
      
-        {articles.map(( article ) => (
-
+        {articlesStorage.map(( article ) => (
          <ArticleSingle  key={article.id} article={article}/>
-
         ))}
 
      </ArticlesRun>
- 
-  
-
  )
-
 
 }
 

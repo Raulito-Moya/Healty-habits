@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useStorage } from "../../context/useStorage";
+import useLoginForm from "../../Hooks/useLoginForm";
 import hoja from "../../img/hojas.svg";
-
+import { ErrorMessage } from "../Articles/CreateArticle";
+import { BackBottom, ChangeSignWay,  SignImg, SignInput, SignInputEmail, SignInputPassword, SignLabel } from './SignUpScreen'
 
 export const SignForm = styled.form`
   display: flex;
@@ -29,55 +31,13 @@ export const SignForm = styled.form`
   }
 `;
 
-export const SignImg = styled.img`
-  width: 100px;
-  padding-bottom: 50px;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-
-export const SignLabel = styled.label`
-  font-weight: 800;
-  font-size: 1.5em;
-  & + input {
-    margin-top: 10px;
-    margin-bottom: 15px;
-  }
-`;
-
-export const SignInput = styled.input`
-  border-radius: 5px;
-  width: 40%;
-  height: 30px;
-  border: none;
-
-  @media screen and (max-width: 650px) {
-    width: 90%;
-  }
-
-  &:focus {
-    transform: scale(1.1);
-    box-shadow: ${(props) => props.theme.lightBoxShadow};
-  }
-`;
-
-export const ChangeSignWay = styled(Link)`
-  font-size: 1.3em;
-`;
-
- export const BackBottom = styled.button`
-    position: absolute;
-    top: 7px;
-    left: 2px;
-  
-
-`
 
 
 export const LoginScreen = ({ history }) => {
   const { changePath, setChangePath } = useStorage();
+   
+   const {register, handleSubmit,onSubmit,errors} = useLoginForm()
+
 
   useEffect(() => {
     setChangePath(true);
@@ -88,9 +48,7 @@ export const LoginScreen = ({ history }) => {
 
   return (
     
-        
- 
-    <SignForm>
+    <SignForm  onSubmit={handleSubmit(onSubmit) } errors={errors}>
      <BackBottom
      type='button'
         onClick={() => {
@@ -100,11 +58,10 @@ export const LoginScreen = ({ history }) => {
         Back
       </BackBottom>
       <SignImg src={hoja} />
-      <SignLabel>Email:</SignLabel>
-      <SignInput />
-      <SignLabel>Password:</SignLabel>
-      <SignInput />
-      <ChangeSignWay to="/signup">Do you nedd an acount?</ChangeSignWay>
+      <SignInputEmail name="email" register={register} errors={errors}/>
+       <SignInputPassword name="email" register={register} errors={errors}/>
+       <button type="submit">enviar</button>
+      <ChangeSignWay to="/signup">Do you need an acount?</ChangeSignWay>
     </SignForm>  
   
   );

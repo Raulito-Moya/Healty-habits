@@ -1,4 +1,4 @@
-import { SET_CHANGE_PATH, SET_IS_LOADING } from "./types"
+import { SET_ARTICLES, SET_CHANGE_PATH, SET_IS_LOADING } from "./types"
 
 
 
@@ -17,7 +17,14 @@ export const appReducer = (state, action) => {
          return{
            ...state,
            changePath: action.payload
-         }    
+         }   
+         
+         
+      case SET_ARTICLES:
+        return{
+          ...state,
+          articles: action.payload
+        }   
   
       
           

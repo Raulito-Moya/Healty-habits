@@ -1,15 +1,17 @@
 import { useReducer } from "react";
+import getActiveArticles from "../API/getActiveArticles";
 import AppContext from "./app-context";
 import { appReducer } from "./app-reducer";
 
-import { SET_CHANGE_PATH, SET_IS_LOADING } from "./types"
+import { SET_ARTICLES, SET_CHANGE_PATH, SET_IS_LOADING } from "./types"
 
 
 export const AppState = (props) => {
 
   const initialState = {
     isLoading:false,
-    changePath:false
+    changePath:false,
+    articles:[]
   }
 
 
@@ -34,6 +36,19 @@ export const AppState = (props) => {
    }
 
 
+   const setArticles = async() => {
+    
+      const res = await getActiveArticles()
+ 
+     dispatch({
+       type:SET_ARTICLES,
+       payload: res
+
+     })
+
+   }
+
+
  return(
    
     <AppContext.Provider
@@ -41,7 +56,9 @@ export const AppState = (props) => {
         isLoading:state.isLoading,
         changePath:state.changePath,
         setisLoading,
-        setChangePath
+        setChangePath,
+        articlesStorage: state.articles,
+        setArticles
      }}
     >
 

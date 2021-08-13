@@ -15,6 +15,9 @@ const ArticleViewPreview = styled.div`
    margin-top: 80px;
    width: 80%;
   
+   @media screen and (max-width:500px){
+    width: 100%;
+   }  
 
 `
 
@@ -32,7 +35,12 @@ const ArticleView = styled.div`
 
 const ArticleTitle = styled.h1`
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   
+   width: 100%;
+   text-align: center;
+  @media screen and (max-width:658px){
+    text-align:center;
+    font-size: larger;
+   }  
 
 `
 
@@ -40,6 +48,9 @@ const ArticleImg = styled.img`
   width: 70%;
   padding: 20px;
   
+  @media screen and (max-width:750px){
+    width: 95%;
+   }  
 
 `
 const ArticleAuthor = styled.span`
@@ -70,25 +81,25 @@ const Articledescription = styled.h3`
 `
 
 const LikeDiv = styled.div`
+   width: auto;
    display: flex;
    flex-flow: row;
-   justify-content: space-between
-   
-`
+   justify-content: space-between;
+  
+` 
 
 
 const LikeButton = styled.button`
-    width: 100px;
+ width: 100px;
  height: 40px;
-
+ 
+ margin-left:0px ;
  border: none;
+ background: center url(${likeIcon}) no-repeat;
  &:hover{
   transform: scale(1.1);
 
 }
-
-
-background: center url(${likeIcon}) no-repeat;
 
 `
 
@@ -144,7 +155,6 @@ const LikesText = styled.p`
       })
    
     observer.observe(elementref.current)
-    
   })
  
 
@@ -158,8 +168,8 @@ const LikesText = styled.p`
    { show ?  <ArticleView >
      
       <ArticleTitle>{article.title}</ArticleTitle>
-      <ArticleImg src={article.image}/>
-       <ArticleAuthor>{article.author} </ArticleAuthor>
+      <ArticleImg src={article.img}/>
+       <ArticleAuthor> Por {article.author} </ArticleAuthor>
        <DivTags>
            { 
              article.tags.map(tag => (
@@ -169,15 +179,15 @@ const LikesText = styled.p`
            }
           
        </DivTags>
-       <Articledescription>{article.text}</Articledescription>
+       <Articledescription>{article.content}</Articledescription>
 
       <LikeDiv>
         <LikeButton type='button' onClick={addLike} /> 
-        <Likes likes={Likes}>{likes} </Likes >
-       <LikesText>{thanks}</LikesText>
-      
-      </LikeDiv>
+        <Likes likes={Likes}> {likes} </Likes >
      
+      </LikeDiv>
+      <LikesText> {thanks} </LikesText>
+       
     </ArticleView>
          : <MyLoader/>
   }

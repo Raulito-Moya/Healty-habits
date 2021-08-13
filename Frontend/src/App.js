@@ -62,9 +62,10 @@ return (
 
 
 <Router>
+ 
     {!changePath  && (
      <Header/>)}
-    <ScrollToTop/>
+     <ScrollToTop/>
   
      <Switch>
         <Route path="/login"  component={LoginScreen}/>

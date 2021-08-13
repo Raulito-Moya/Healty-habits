@@ -1,18 +1,22 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form";
+import postNewArticle from "../API/postNewArticle";
 
 
 
-const useCreateArticle = () => {
+const useCreateArticle = ({select}) => {
      
 
   const { register, handleSubmit,watch, formState: { errors } }= useForm({
     mode: "onBlur",
   });
+  
+  const [file,setfile] = useState(null)
+  console.log(file);
+  const onSubmit = (data,e) => { postNewArticle(data,file,select) };
 
 
-
-    const [file,setfile] = useState(null)
+    
     // console.log(formValues);
     const handleFileChange = ({target}) => {
        
@@ -20,8 +24,8 @@ const useCreateArticle = () => {
        console.log(file);
        if(file){
          const img = URL.createObjectURL(file);
-       console.log(img);
-      setfile(img)
+         console.log(img);
+         setfile(img)
        }else{
          setfile(null)
        }
@@ -34,7 +38,7 @@ const useCreateArticle = () => {
    
 
 
-    return {register, handleSubmit,errors,  file, handleFileChange}
+    return {register, handleSubmit, onSubmit, errors,  file, handleFileChange}
 
 }
 
