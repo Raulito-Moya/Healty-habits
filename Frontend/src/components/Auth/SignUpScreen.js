@@ -149,12 +149,12 @@ export const SignInputPassword = ({register,errors}) => {
   )
 }
 
-const SignInputConfirmPassword = ({register,errors}) => {
+export const SignInputConfirmPassword = ({register,errors}) => {
   
   return(
     <Fragment>
        <SignLabel>Confirm password:</SignLabel>
-        <SignInput name='confirmPassword'    {...register('confirmPaasword',{ 
+        <SignInput name='confirmPassword'    {...register('confirmPassword',{ 
                                    required:true, 
                                     minLength: {
                                     value: 5,message:"*Email no valid"}
@@ -168,7 +168,7 @@ const SignInputConfirmPassword = ({register,errors}) => {
 
 export  const SignUpScreen = ({history}) => {
    
-  const {register, handleSubmit,onSubmit,errors} = useSignUpForm()
+  const {register, handleSubmit,onSubmit,errors} = useSignUpForm(history)
 
 
 
@@ -181,9 +181,9 @@ export  const SignUpScreen = ({history}) => {
     return ()=>{ setChangePath(false) }
     },[])
     
-  
+  //todo: poner que las password sean iguales
   return(
-    <SignUpForm >
+    <SignUpForm onSubmit={handleSubmit(onSubmit) }>
         <BackBottom
         type='button'
         onClick={() => {
@@ -197,7 +197,7 @@ export  const SignUpScreen = ({history}) => {
          <SignInputEmail register={register} errors={errors}/>
          <SignInputPassword register={register} errors={errors}/>
           <SignInputConfirmPassword register={register} errors={errors}/>
-        <button type="submit">enviar</button>
+        <button type="submit" >enviar</button>
        <ChangeSignWay to='/login'>Sign In</ChangeSignWay>
     </SignUpForm >
   

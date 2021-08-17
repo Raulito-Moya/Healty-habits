@@ -69,8 +69,7 @@ const postArticle = async(req, res) => {
 
 
 const updateArticle = (req, res) => {
-
- res.status(200).json({ok:'Article Updated'})
+   
 
 }
 

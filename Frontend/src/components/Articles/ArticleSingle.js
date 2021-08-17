@@ -5,6 +5,9 @@ import likeIcon from "../../assess/like-icon.svg"
 import hoja from '../../img/hojas.svg'
 import { useArtcicle } from '../../Hooks/useArticle';
 import MyLoader from '../UX/Loader';
+import { getLikesByArticles } from '../../API/getLikesByArticle';
+
+
 
 const ArticleViewPreview = styled.div`
   align-items: center;
@@ -132,7 +135,7 @@ const LikesText = styled.p`
 
    const [show,setShow] = useState(false)
    const elementref =  useRef() 
-   const {likes,thanks, addLike} = useArtcicle()
+   const {likes,setLikes,thanks, addLike} = useArtcicle()
    
 
    useEffect(()=> {
@@ -145,27 +148,31 @@ const LikesText = styled.p`
  
         setTimeout(()=> {setShow(true)},500)
         
-        console.log(show)
+        //console.log(show)
        }
      }
  
       const observer = new IntersectionObserver(onChange, {
         rootMargin: '10px'
-       
       })
    
     observer.observe(elementref.current)
-  })
+   })
  
 
+   useEffect(async()=> {
+     
+     const likesFound = await getLikesByArticles(article)
+     setLikes(likesFound)
+     console.log(likesFound);
 
+   },[likes])
 
-
-  return(
+   return(
    
-    <ArticleViewPreview ref={elementref}>
+    <ArticleViewPreview ref={elementref} key={key}>
    
-   { show ?  <ArticleView >
+   { show ?  <ArticleView  key={key}>
      
       <ArticleTitle>{article.title}</ArticleTitle>
       <ArticleImg src={article.img}/>
@@ -182,7 +189,7 @@ const LikesText = styled.p`
        <Articledescription>{article.content}</Articledescription>
 
       <LikeDiv>
-        <LikeButton type='button' onClick={addLike} /> 
+        <LikeButton type='button' onClick={() => {addLike(article)}} /> 
         <Likes likes={Likes}> {likes} </Likes >
      
       </LikeDiv>

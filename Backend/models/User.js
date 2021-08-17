@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     },
     email:{
         type:String,
-        required: [true, 'eamil is required'],
+        required: [true, 'email is required'],
         unique: true //un solo correo electronico 
     },
     password:{
@@ -24,12 +24,20 @@ const UserSchema = new Schema({
         default: 'USER_ROLE', //exportacion por defecto
         emun: ['ADMIN_ROLE', 'USER_ROLE']
     },
-    state: {
+    active: {
         type: Boolean,
         default: true
-    }
+    },
+    subscribed:{
+     type: Boolean,
+     default:false
+    },
+    articles:[ { type:Schema.Types.ObjectId, ref:"Article"} ],
+    likes:[ { type:Schema.Types.ObjectId, ref:"Likes"} ]
+
 
 })
 
+const User = moongose.model('User',UserSchema)
 
-module.exports = model( 'User', UserSchema )
+module.exports = User

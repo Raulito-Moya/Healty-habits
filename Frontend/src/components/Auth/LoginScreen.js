@@ -36,7 +36,7 @@ export const SignForm = styled.form`
 export const LoginScreen = ({ history }) => {
   const { changePath, setChangePath } = useStorage();
    
-   const {register, handleSubmit,onSubmit,errors} = useLoginForm()
+   const {register, handleSubmit,onSubmit,errors} = useLoginForm(history)
 
 
   useEffect(() => {
@@ -60,6 +60,7 @@ export const LoginScreen = ({ history }) => {
       <SignImg src={hoja} />
       <SignInputEmail name="email" register={register} errors={errors}/>
        <SignInputPassword name="email" register={register} errors={errors}/>
+       <ChangeSignWay to="/forgotpassword">Forgot your password</ChangeSignWay >
        <button type="submit">enviar</button>
       <ChangeSignWay to="/signup">Do you need an acount?</ChangeSignWay>
     </SignForm>  

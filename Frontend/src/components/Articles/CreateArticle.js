@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import postNewArticle from '../../API/postNewArticle'
 import useCreateArticle from '../../Hooks/useCreateArticle'
 import { useForm } from 'react-hook-form'
+import { LoaderSpinner } from '../UX/LoaderSpiner'
 
 
 
@@ -85,11 +86,17 @@ const CreateArticleForm = styled.form`
      
     }
 
+    & > .item6 {
+      grid-row: 5;
+      grid-column-start:2;
+      grid-column-end:2
+    }
+
      & > h2{
        grid-row: 5;
      }
 
-    
+     
  
  
     @media screen and (max-width: 683px) {
@@ -166,7 +173,7 @@ const TextAreaTitle = ({register, errors}) => {
   return(
         <div className="item1" >
            
-         <TextArea type="text" placeholder="title.." name="title"     {...register("title", {required:true,pattern:/^[A-Za-zñÑáÁéÉíÍóÓúÚÜü]+$/,message:"should be 2 length"})} />
+         <TextArea type="text" placeholder="title.." name="title"     {...register("title", {required:true,pattern:/\S+$/,message:"should be 2 length"})} />
          {errors.title && <ErrorMessage>the title should be correct</ErrorMessage>}
        </div>
   )
@@ -207,9 +214,9 @@ const TextAreaCategory = ({register, errors}) => {
          <select name="category" style={{  }} /*onChange={handleInputChange}*/ {...register('category')}>
             
            <option >Fit</option>
-           <option >Healthy Food</option>
+           <option >Healty Food</option>
            <option >Habits</option>
-           <option >Healthy Integral</option>
+           <option >Healty Integral</option>
          </select>
          <button as="input" type="submit"  /*onClick={handleCreateUser}*/ >enviar</button> 
        </div>
@@ -222,7 +229,7 @@ const TextAreaCategory = ({register, errors}) => {
 const CreateArticle = () => { 
   const select = document.getElementById('form')
 
-   const {file, formValues, handleFileChange, register, handleSubmit,onSubmit, errors} =  useCreateArticle({select})
+   const {file, formValues, handleFileChange, register, handleSubmit,onSubmit, errors, isFormLoading, wasPublished} =  useCreateArticle({select})
   
  
  //console.log(errors);
@@ -243,6 +250,9 @@ const CreateArticle = () => {
        
        <TextAreaTags register={register} errors={errors} />
        <TextAreaCategory register={register}/>
+       
+       {isFormLoading && <LoaderSpinner className='item6' data-testid="spinner" small />}
+       {wasPublished && <p className='item6'>Articulo Publicado!!</p>}
     </CreateArticleForm>
  )
 

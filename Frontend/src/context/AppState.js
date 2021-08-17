@@ -11,7 +11,8 @@ export const AppState = (props) => {
   const initialState = {
     isLoading:false,
     changePath:false,
-    articles:[]
+    articles:[],
+    token:null
   }
 
 
@@ -49,6 +50,8 @@ export const AppState = (props) => {
    }
 
 
+ 
+
  return(
    
     <AppContext.Provider
@@ -58,7 +61,8 @@ export const AppState = (props) => {
         setisLoading,
         setChangePath,
         articlesStorage: state.articles,
-        setArticles
+        setArticles,
+     
      }}
     >
 

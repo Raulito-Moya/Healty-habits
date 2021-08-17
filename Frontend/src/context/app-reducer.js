@@ -1,4 +1,4 @@
-import { SET_ARTICLES, SET_CHANGE_PATH, SET_IS_LOADING } from "./types"
+import { SET_ARTICLES, SET_CHANGE_PATH, SET_IS_LOADING, SET_TOKEN } from "./types"
 
 
 
@@ -25,7 +25,7 @@ export const appReducer = (state, action) => {
           ...state,
           articles: action.payload
         }   
-  
+    
       
           
   }

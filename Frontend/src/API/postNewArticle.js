@@ -1,6 +1,6 @@
 
 
-const postNewArticle = async(formValues, file, select) => {
+const postNewArticle = async(formValues, file, select,setisformLoading, setwasPublished) => {
  
 
     const headers = new Headers();
@@ -30,7 +30,9 @@ const postNewArticle = async(formValues, file, select) => {
 
       try {
          
-         let res = await fetch(`/api/articles/postArticle`, setting)
+         let res = await fetch(`/api/articles/postArticle`, setting);
+         setisformLoading(false)
+         setwasPublished(true)
          console.log(res);
       } catch (error) {
           console.log(error);

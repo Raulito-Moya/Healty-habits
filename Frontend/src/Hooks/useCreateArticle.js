@@ -12,8 +12,16 @@ const useCreateArticle = ({select}) => {
   });
   
   const [file,setfile] = useState(null)
+  const [isFormLoading, setisformLoading] = useState(false)
+  const [wasPublished, setwasPublished] = useState(false)
   console.log(file);
-  const onSubmit = (data,e) => { postNewArticle(data,file,select) };
+
+ const onSubmit =  async(data,e) => {
+   await setisformLoading(true)   
+   
+    await postNewArticle(data,file,select,setisformLoading,setwasPublished) 
+    
+    };
 
 
     
@@ -38,7 +46,7 @@ const useCreateArticle = ({select}) => {
    
 
 
-    return {register, handleSubmit, onSubmit, errors,  file, handleFileChange}
+    return {register, handleSubmit, onSubmit, errors,  file, handleFileChange, isFormLoading, wasPublished}
 
 }
 

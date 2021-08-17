@@ -1,14 +1,13 @@
 import { useState } from "react";
 import getActiveArticles from "../API/getActiveArticles";
+import { postAddLike } from "../API/postAddLike";
 import { articles } from "../assess/mock";
 import { useStorage } from "../context/useStorage";
 
 
 
-
 export const useArtcicle = (articlesStorage) => {
     
-
 
     const [likes, setLikes] = useState(0)
     const [thanks, setThanks] = useState('Deja un like si te ha gustado el articulo')   
@@ -16,17 +15,18 @@ export const useArtcicle = (articlesStorage) => {
    let articlesActive = getActiveArticles()
   // console.log(articlesActive);
 
-    const addLike = (e) => {
-    
-       if(likes === 0) {
+    const addLike = async(article) => {
+     
+        await postAddLike(article)
+       
+
+
+       if(likes >= 0) {
         setLikes(likes + 1)
         setThanks('Gracias!!')
        }
 
-       if(likes > 0) {
-        setLikes(likes - 1)
-        setThanks('Deja un like si te ha gustado el articulo')
-       }
+      
         
     
       //  e.target.disabled = true
@@ -43,11 +43,11 @@ export const useArtcicle = (articlesStorage) => {
 
     const gethealthyFoodArticles = () => {
        
-      const result = articlesStorage.filter( (article)=> article.category === 'HealtyFood' )
+      const result = articlesStorage.filter( (article)=> article.category === 'Healty Food' || article.category === 'Healty Integral' )
    
        return result
     }
 
- return {likes,thanks, addLike ,getExercisesArticles, gethealthyFoodArticles }
+ return {likes,setLikes,thanks, addLike ,getExercisesArticles, gethealthyFoodArticles }
 
 }

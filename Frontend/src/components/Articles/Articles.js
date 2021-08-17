@@ -36,7 +36,7 @@ const Articles = () => {
 
 
   const {isLoading, setisLoading} = useStorage() 
-  const [show, setShow] = useState(false)
+  
   const elementref =  useRef()
    console.log(isLoading);
  
@@ -46,9 +46,12 @@ const Articles = () => {
 
      <ArticlesRun >
      
-        {articlesStorage.map(( article ) => (
-         <ArticleSingle  key={article.id} article={article}/>
-        ))}
+       {
+          articlesStorage.map(( article ) => (
+          <ArticleSingle  key={article.id} article={article}/>
+         ))
+        
+       }
 
      </ArticlesRun>
  )

@@ -12,6 +12,8 @@ import ScrollToTop from './components/UX/ScrollToUp'
 import { LoginScreen } from './components/Auth/LoginScreen'
 import { SignUpScreen } from './components/Auth/SignUpScreen'
 import CreateArticle from './components/Articles/CreateArticle'
+import { ForgotPasswordFormEmail } from './components/Auth/ForgotPasswordFormEmail'
+import { ForgotPasswordForm } from './components/Auth/ForgotPasswordForm'
 
 
 
@@ -70,10 +72,13 @@ return (
      <Switch>
         <Route path="/login"  component={LoginScreen}/>
         <Route path="/signup" component={SignUpScreen}/>
+        <Route path="/forgotpassword" exact component={ForgotPasswordFormEmail }/>
+        <Route path="/forgotpassword/form" component={ForgotPasswordForm}/>
+
         <Route path="/" exact  component={Articles} />
-        <Route path="/articles/exercises"   component={ExercisesArticles} />
-        <Route path="/articles/healthyfood"   component={HealtyFoodArticle} />
-        <Route path="/articles/createarticle"   component={CreateArticle} />
+        <Route path="/articles/exercises"  component={ExercisesArticles} />
+        <Route path="/articles/healthyfood"  component={HealtyFoodArticle} />
+        <Route path="/articles/createarticle"  component={CreateArticle} />
         <Route path = "*" component={Articles} />
      </Switch>
 
