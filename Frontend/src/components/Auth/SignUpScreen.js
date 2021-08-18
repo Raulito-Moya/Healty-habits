@@ -168,7 +168,7 @@ export const SignInputConfirmPassword = ({register,errors}) => {
 
 export  const SignUpScreen = ({history}) => {
    
-  const {register, handleSubmit,onSubmit,errors} = useSignUpForm(history)
+  const {register, handleSubmit,onSubmit,errors,errorLogin} = useSignUpForm(history)
 
 
 
@@ -199,6 +199,7 @@ export  const SignUpScreen = ({history}) => {
           <SignInputConfirmPassword register={register} errors={errors}/>
         <button type="submit" >enviar</button>
        <ChangeSignWay to='/login'>Sign In</ChangeSignWay>
+       {errorLogin && <h4>{errorLogin}</h4>}
     </SignUpForm >
   
   )

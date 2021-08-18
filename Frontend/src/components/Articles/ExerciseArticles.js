@@ -9,8 +9,10 @@ import { ArticleSingle } from "./ArticleSingle";
 
 export const BackLinkbuttom = styled(Link)`
   position: fixed;
+  
   width: 50px;
   height: 40px;
+  top: 70px;
   margin: 0;
   left: -80px;
  
@@ -27,7 +29,7 @@ export const BackLinkbuttom = styled(Link)`
 const ExercisesArticles = () => {
    
    const {articlesStorage, setArticles} = useStorage()
-   console.log(articlesStorage);
+   //console.log(articlesStorage);
 
 const { getExercisesArticles } =  useArtcicle(articlesStorage);
 

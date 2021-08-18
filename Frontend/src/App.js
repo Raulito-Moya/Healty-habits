@@ -12,8 +12,13 @@ import ScrollToTop from './components/UX/ScrollToUp'
 import { LoginScreen } from './components/Auth/LoginScreen'
 import { SignUpScreen } from './components/Auth/SignUpScreen'
 import CreateArticle from './components/Articles/CreateArticle'
+import { EmailConfirmationAcountModal } from './components/Auth/EmailConfirmAcountModal'
 import { ForgotPasswordFormEmail } from './components/Auth/ForgotPasswordFormEmail'
 import { ForgotPasswordForm } from './components/Auth/ForgotPasswordForm'
+import { EmailResetPasswordModal } from './components/Auth/EmailResetPasswordModal'
+import { ConfirmationPasswordaModal } from './components/Auth/ConfimationPasswordModal'
+import { ModalConfirmations } from './components/UX/ModalConfirmations'
+
 
 
 
@@ -66,14 +71,20 @@ return (
 <Router>
  
     {!changePath  && (
-     <Header/>)}
+     <Header/> ) }
+      {!changePath  && (
+      <ModalConfirmations /> ) }
+     
      <ScrollToTop/>
   
      <Switch>
         <Route path="/login"  component={LoginScreen}/>
         <Route path="/signup" component={SignUpScreen}/>
+        <Route path="/confirmation" component={EmailConfirmationAcountModal}/>
         <Route path="/forgotpassword" exact component={ForgotPasswordFormEmail }/>
+        <Route path="/forgotpassword/confirmemail" component={EmailResetPasswordModal}/>
         <Route path="/forgotpassword/form" component={ForgotPasswordForm}/>
+        <Route path="/forgotpassword/confirmation"  component={ConfirmationPasswordaModal}/>
 
         <Route path="/" exact  component={Articles} />
         <Route path="/articles/exercises"  component={ExercisesArticles} />

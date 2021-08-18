@@ -14,7 +14,7 @@ export const createUser = async(data) => {
      const setting = {
         method: 'POST',
         headers:headers,
-        body: JSON.stringify({name,email,password}) 
+        body: JSON.stringify({name,email,password,confirmPassword}) 
      }
 
    console.log(data);

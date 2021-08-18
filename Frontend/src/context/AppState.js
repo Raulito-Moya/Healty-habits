@@ -3,7 +3,7 @@ import getActiveArticles from "../API/getActiveArticles";
 import AppContext from "./app-context";
 import { appReducer } from "./app-reducer";
 
-import { SET_ARTICLES, SET_CHANGE_PATH, SET_IS_LOADING } from "./types"
+import { SET_ARTICLES, SET_CHANGE_PATH, SET_DIFERENT_PASSWORD, SET_IS_LOADING, SET_LOGIN_ERROR } from "./types"
 
 
 export const AppState = (props) => {
@@ -11,6 +11,8 @@ export const AppState = (props) => {
   const initialState = {
     isLoading:false,
     changePath:false,
+    errorLogin:false,
+    diferentPassword:false,
     articles:[],
     token:null
   }
@@ -18,7 +20,7 @@ export const AppState = (props) => {
 
    const [state, dispatch] = useReducer(appReducer, initialState)
 
- 
+
    const setisLoading = (boolean) => {
       dispatch({
          type: SET_IS_LOADING,
@@ -37,6 +39,26 @@ export const AppState = (props) => {
    }
 
 
+ //:auth
+ const setLoginError = (error) => {
+    dispatch({
+       type:SET_LOGIN_ERROR,
+       payload:error
+    })
+
+
+ }
+
+ const setDiferentPassword = (error) => {
+    dispatch({
+       type:SET_DIFERENT_PASSWORD,
+       payload: error
+    })
+ }
+
+  
+ 
+  //articles
    const setArticles = async() => {
     
       const res = await getActiveArticles()
@@ -57,9 +79,13 @@ export const AppState = (props) => {
     <AppContext.Provider
      value={{
         isLoading:state.isLoading,
-        changePath:state.changePath,
         setisLoading,
+        changePath:state.changePath,
         setChangePath,
+        errorLogin:state.errorLogin,
+        setLoginError,
+        diferentPassword:state.diferentPassword,
+        setDiferentPassword,
         articlesStorage: state.articles,
         setArticles,
      

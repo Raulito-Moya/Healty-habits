@@ -1,11 +1,11 @@
-import { SET_ARTICLES, SET_CHANGE_PATH, SET_IS_LOADING, SET_TOKEN } from "./types"
+import { SET_ARTICLES, SET_CHANGE_PATH, SET_DIFERENT_PASSWORD, SET_IS_LOADING, SET_LOGIN_ERROR } from "./types"
 
 
 
 export const appReducer = (state, action) => {
 
   switch (action.type) {
-
+       // UI/UX
       case SET_IS_LOADING:
           return{
              ...state,
@@ -26,6 +26,19 @@ export const appReducer = (state, action) => {
           articles: action.payload
         }   
     
+        
+      //AUTH
+      case SET_LOGIN_ERROR:
+        return{
+          ...state,
+          errorLogin:action.payload
+        }
+
+      case SET_DIFERENT_PASSWORD:
+        return{
+          ...state,
+          diferentPassword:action.payload
+        }
       
           
   }

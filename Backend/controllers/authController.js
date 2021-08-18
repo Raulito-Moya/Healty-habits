@@ -16,14 +16,21 @@ const loginUser = async(req,res) => {
 
    const userFound = await User.findOne({email})     
     
-   if(!userFound) return res.status(400).json({msg:"Error User Founded"}) 
+   const token = jwt.sign({ 
+     id:userFound.id 
+  
+  }, process.env.JWT_USER_CONFIRMATION);
+
+
+
+   if(!userFound) return res.status(400).json({error:"Error User Founded"}) 
 
    const matchPassword =  bcryptjs.compareSync( password, userFound.password );
    
-   if(!matchPassword) return res.status(400).json({msg:"Error comparing password"})   
+   if(!matchPassword) return res.status(400).json({error:"Error comparing password"})   
  
    
-   res.json({name: userFound.name, email: userFound.email,redirect:'/'})
+   res.json({name: userFound.name, email: userFound.email,redirect:'/', token:token})
 
 
  } catch (error) {
@@ -51,7 +58,7 @@ const sendConfirmationEmail = async(req,res) => {
   
      await sendConfirmationEmailFunction(url,userFound.email)
   
-     res.status(200).json({success: true , message: " Account confirmation email has been send successfully"})
+     res.status(200).json({success: true , message: " Account confirmation email has been send successfully",redirect:"http://localhost:3000/#/confirmation"})
   
   
     }catch(error){
@@ -107,7 +114,7 @@ const setResetPaswordEmail = async(req,res) => {
 
     await sendResetPasswordEmailFunction(url,email)
    
-     res.json({msg:'Email for get new password  have been sended'})
+     res.json({msg:'Email for get new password  have been sended',redirect:'/forgotpassword/confirmemail'})
       
     } catch (error) {
         console.log(error);
@@ -137,9 +144,9 @@ try {
     const passwordCrypt = bcryptjs.hashSync( password, salt )
 
     const userFound = await User.findByIdAndUpdate(id,{password:passwordCrypt}) 
-    console.log('se camnio');
+   
 
-  res.json({msg:'Your new password is ready',redirect:'http://localhost:3000/#/'})
+  res.json({msg:'Your new password is ready',redirect:'/forgotpassword/confirmation'})
 
    
 } catch (error) {

@@ -1,13 +1,15 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useStorage } from "../../context/useStorage"
 import useLoginForm from "../../Hooks/useLoginForm"
+import { LoaderSpinner } from "../UX/LoaderSpiner"
 import { SignForm } from "./LoginScreen"
 import { ChangeSignWay, SignInputEmail } from "./SignUpScreen"
 
 export const ForgotPasswordFormEmail = ({history}) => {
-  
-    const {register, handleSubmit,onSubmitEmailforPassword,errors} = useLoginForm(history)
-
+   
+    
+    const {register, handleSubmit,onSubmitEmailforPassword,errors,isLoading} = useLoginForm(history)
+    
     const {changePath,setChangePath} = useStorage()
     //console.log(changePath);
     
@@ -23,6 +25,7 @@ export const ForgotPasswordFormEmail = ({history}) => {
         <h4>Please provide a email ,and then we'll send you information for get yout password</h4>
        <SignInputEmail name="email" register={register} errors={errors} />
         <button type="submit">send</button>
+        {isLoading && <LoaderSpinner/>}
     </SignForm>
      
  )   

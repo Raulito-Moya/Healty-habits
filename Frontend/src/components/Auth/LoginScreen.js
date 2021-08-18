@@ -5,6 +5,8 @@ import { useStorage } from "../../context/useStorage";
 import useLoginForm from "../../Hooks/useLoginForm";
 import hoja from "../../img/hojas.svg";
 import { ErrorMessage } from "../Articles/CreateArticle";
+import { LoaderSpinner } from "../UX/LoaderSpiner";
+
 import { BackBottom, ChangeSignWay,  SignImg, SignInput, SignInputEmail, SignInputPassword, SignLabel } from './SignUpScreen'
 
 export const SignForm = styled.form`
@@ -36,7 +38,7 @@ export const SignForm = styled.form`
 export const LoginScreen = ({ history }) => {
   const { changePath, setChangePath } = useStorage();
    
-   const {register, handleSubmit,onSubmit,errors} = useLoginForm(history)
+   const {register, handleSubmit,onSubmit, errors, errorLogin,isLoading} = useLoginForm(history)
 
 
   useEffect(() => {
@@ -63,6 +65,8 @@ export const LoginScreen = ({ history }) => {
        <ChangeSignWay to="/forgotpassword">Forgot your password</ChangeSignWay >
        <button type="submit">enviar</button>
       <ChangeSignWay to="/signup">Do you need an acount?</ChangeSignWay>
+       {errorLogin && <ErrorMessage>{errorLogin}</ErrorMessage>}
+       {isLoading && <LoaderSpinner/>}
     </SignForm>  
   
   );
