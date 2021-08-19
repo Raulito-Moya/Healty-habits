@@ -40,16 +40,17 @@ const ArticleTitle = styled.h1`
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
    width: 100%;
    text-align: center;
+   font-size: 3.1em;
   @media screen and (max-width:658px){
     text-align:center;
-    font-size: larger;
+    font-size: 2.1em;
    }  
 
 `
 
 const ArticleImg = styled.img`
   width: 70%;
-  padding: 20px;
+  padding: 1.2em;
   
   @media screen and (max-width:750px){
     width: 95%;
@@ -57,7 +58,7 @@ const ArticleImg = styled.img`
 
 `
 const ArticleAuthor = styled.span`
-  font-size: 20px;
+  font-size: 1.2em;
  
 `
 const DivTags = styled.div`
@@ -68,7 +69,7 @@ const DivTags = styled.div`
 
 const Tag = styled.a`
  color: black;
- font-size: 15px;
+ font-size: 1.1em;
  margin-left: 5px;
 
 `
@@ -76,7 +77,7 @@ const Tag = styled.a`
 const Articledescription = styled.h3`
   color: rgba(138, 136, 136, 0.829);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.2em;
+  font-size: 1.5em;
   padding: 10px ;
   letter-spacing: 1px;
   width: 80%;
@@ -136,7 +137,7 @@ const LikesText = styled.p`
    const [show,setShow] = useState(false)
    const elementref =  useRef() 
    const {likes,setLikes,thanks, addLike} = useArtcicle()
-   
+   const userToken = localStorage.getItem('userToken')
 
    useEffect(()=> {
      
@@ -189,7 +190,7 @@ const LikesText = styled.p`
        <Articledescription>{article.content}</Articledescription>
 
       <LikeDiv>
-        <LikeButton type='button' onClick={() => {addLike(article)}} /> 
+        <LikeButton type='button' onClick={() => { userToken && addLike(article)}} /> 
         <Likes likes={Likes}> {likes} </Likes >
      
       </LikeDiv>

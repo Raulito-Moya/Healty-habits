@@ -4,6 +4,6 @@ const { getLikes, postNewLike,getLikesByArticles } = require('../controllers/lik
 
 router.get('/',getLikes)
 router.get('/getlikes/:id',getLikesByArticles)
-router.post('/addlike',postNewLike)
+router.post('/addlike/:token',postNewLike)
 
 module.exports = router

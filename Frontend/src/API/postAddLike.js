@@ -1,7 +1,7 @@
 
 
 export const postAddLike = async(article) => {
-     
+   const token = localStorage.getItem('userToken')
 
     const headers = new Headers();
      headers.append('Accept', 'application/json');
@@ -20,7 +20,7 @@ export const postAddLike = async(article) => {
    console.log(data);
    try {
       
-     let res = await fetch(`/api/likes/addlike`, setting);
+     let res = await fetch(`/api/likes/addlike/${token}`, setting);
      let json = await res.json()
      console.log(json);
    } catch (error) {

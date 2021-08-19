@@ -1,10 +1,12 @@
 const { response, request } = require('express')
 const Likes  = require('../models/Likes')
 const { Article } = require('../models/Articles')
+const jwt =require('jsonwebtoken');
 
 
 const getLikes = async (req,res = response) => {
  try {
+   
 
     const [total, likes] = await Promise.all([
         Likes.countDocuments(),
@@ -23,17 +25,34 @@ const getLikes = async (req,res = response) => {
 
 const postNewLike = async(req,res = response) => {
     try {
-
+      const { token } = req.params
+    
+      const decoded =   jwt.verify(token, process.env.JWT_USER_CONFIRMATION)
+      
+      const userid  =  decoded.id
+       console.log(userid);
       const {article} = req.body
-      console.log(req.body);
- 
+     // console.log(req.body);
+   
+    
+      const articleFound  = await Article.findById(article._id).populate({path:'likes'})
+      console.log(articleFound);
+
+      const errorLike = articleFound.likes.filter(like => like.user == userid)
+      console.log(errorLike);
+     if(errorLike.length > 0){
+       return res.status(406).json({error:'the user have a like in this article'})
+     }
+
+
     const like = new Likes({
-     article:article._id
+     article:article._id,
+     user:userid
      })
 
     await like.save() 
    
-    const articleFound  = await Article.findById(article._id)
+  
  
 
   await Article.findByIdAndUpdate(article._id,{
