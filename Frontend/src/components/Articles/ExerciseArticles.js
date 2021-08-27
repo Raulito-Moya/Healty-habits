@@ -42,18 +42,20 @@ const { getExercisesArticles } =  useArtcicle(articlesStorage);
    },[])
 
   let articles =  getExercisesArticles();
+ 
+
 
   return (
     <div>
       <BackLinkbuttom to="/">Atras</BackLinkbuttom>
 
       <ArticlesRun>
-        {typeof articles ? (
+        { articles ? (
           articles.map((article) => (
             <ArticleSingle key={article.id} article={article} />
           ))
         ) : (
-          <h1>Lo sentimos no hay nada</h1>
+          <h1>Error no Exercies articles founded</h1>
         )}
       </ArticlesRun>
     </div>

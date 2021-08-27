@@ -54,7 +54,7 @@ export const LoginScreen = ({ history }) => {
      <BackBottom
      type='button'
         onClick={() => {
-          history.goBack();
+          history.push('/');
         }}
       >
         Back

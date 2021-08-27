@@ -169,7 +169,7 @@ export const SignInputConfirmPassword = ({register,errors}) => {
 export  const SignUpScreen = ({history}) => {
    
   const {register, handleSubmit,onSubmit,errors,errorLogin} = useSignUpForm(history)
-
+   console.log(history);
 
 
     const {changePath,setChangePath} = useStorage()
@@ -181,13 +181,13 @@ export  const SignUpScreen = ({history}) => {
     return ()=>{ setChangePath(false) }
     },[])
     
-  //todo: poner que las password sean iguales
+ 
   return(
     <SignUpForm onSubmit={handleSubmit(onSubmit) }>
         <BackBottom
         type='button'
         onClick={() => {
-          history.goBack();
+          history.push('/');
         }}
         >
          Back

@@ -5,6 +5,7 @@ import { articles } from "../../assess/mock"
 import { useStorage } from "../../context/useStorage"
 import LoadingPage from "../UX/LoadingPage"
 import { ArticleSingle } from "./ArticleSingle"
+import { CommentScreen } from "./CommentScreen"
 
  export const ArticlesRun = styled.main`
   display: flex;
@@ -41,16 +42,19 @@ const Articles = () => {
    console.log(isLoading);
  
    
-   
+  
  return(
 
      <ArticlesRun >
-     
-       {
+   
+     { 
+      articlesStorage ?(
+
           articlesStorage.map(( article ) => (
           <ArticleSingle  key={article.id} article={article}/>
+          
          ))
-        
+        ) : <p>  error, no articles found</p>
        }
 
      </ArticlesRun>

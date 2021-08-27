@@ -24,14 +24,14 @@ const HealtyFoodArticle = () => {
 
 
   let articles = gethealthyFoodArticles()
-
+  
   return(
   <div>
      <BackLinkbuttom to="/">Atras</BackLinkbuttom>
  
    <ArticlesRun>
     { 
-       typeof(articles) && articles.length >= 0 ?
+       articles && articles.length > 0 ?
 
         articles.map(( article ) => (
  
@@ -39,7 +39,7 @@ const HealtyFoodArticle = () => {
  
         ))
        :
-       <h1>Lo siento mucho no hay nada</h1>
+       <h1>No HealtyFoof articles founded</h1>
     }
 
    </ArticlesRun>

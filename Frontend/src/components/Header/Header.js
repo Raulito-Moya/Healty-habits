@@ -50,6 +50,7 @@ transition:all 0.3s ease;
 
 
 const NavWrapper = styled.nav`
+
   display: flex;
   width: 100%;
   height: 70%;
@@ -73,7 +74,7 @@ const NavWrapper = styled.nav`
     right: ${(props) => (props.navisOpen === true ? "-20vw" : "-100vw")};
     transition: all 0.5s ease;
    }
-   transition: all 1.5s ease;
+   transition: right 1.5s ease;
 `
 
 const OpenModalButtom = styled.button`

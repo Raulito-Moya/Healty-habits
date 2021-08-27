@@ -6,13 +6,14 @@ import hoja from '../../img/hojas.svg'
 import { useArtcicle } from '../../Hooks/useArticle';
 import MyLoader from '../UX/Loader';
 import { getLikesByArticles } from '../../API/getLikesByArticle';
+import { CommentScreen } from './CommentScreen';
 
 
 
 const ArticleViewPreview = styled.div`
   align-items: center;
  
-   border: 2px solid #1111;
+   border: 1px solid #1111;
    display: flex;
    flex-flow: column;
    margin-top: 80px;
@@ -28,16 +29,14 @@ const ArticleViewPreview = styled.div`
 const ArticleView = styled.div`
   align-items: center;
  
-  
-   display: flex;
-   flex-flow: column;
+  display: flex;
+  flex-flow: column;
  
   
-
 `
 
 const ArticleTitle = styled.h1`
-   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   font-family: Calibri, Cochin, Georgia, Times, 'Times New Roman', serif;
    width: 100%;
    text-align: center;
    font-size: 3.1em;
@@ -49,7 +48,7 @@ const ArticleTitle = styled.h1`
 `
 
 const ArticleImg = styled.img`
-  width: 70%;
+  width: 80%;
   padding: 1.2em;
   
   @media screen and (max-width:750px){
@@ -58,8 +57,10 @@ const ArticleImg = styled.img`
 
 `
 const ArticleAuthor = styled.span`
-  font-size: 1.2em;
- 
+  font-size: 1.3em;
+  
+  align-self: flex-end;
+  padding: 50px;
 `
 const DivTags = styled.div`
   display: flex;
@@ -69,15 +70,18 @@ const DivTags = styled.div`
 
 const Tag = styled.a`
  color: black;
- font-size: 1.1em;
+ 
+ font-size: 1.9em;
+ 
  margin-left: 5px;
 
 `
 
-const Articledescription = styled.h3`
-  color: rgba(138, 136, 136, 0.829);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.5em;
+const Articledescription = styled.p`
+  color: black;
+  
+  font-family: Verona, Geneva, Tahoma, sans-serif;
+  font-size: 1.7em;
   padding: 10px ;
   letter-spacing: 1px;
   width: 80%;
@@ -124,13 +128,12 @@ const Likes = styled.span`
 const LikesText = styled.p`
  margin-left: 20px;
  font-size: 1.2em;
- font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ font-family: 'Lucida Sans Unicode', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 `
 
 
-    
- 
+
 
  export const ArticleSingle = ({article, key}) => {
 
@@ -148,8 +151,6 @@ const LikesText = styled.p`
        if(el.isIntersecting){
  
         setTimeout(()=> {setShow(true)},500)
-        
-        //console.log(show)
        }
      }
  
@@ -169,15 +170,17 @@ const LikesText = styled.p`
 
    },[likes])
 
+
    return(
    
     <ArticleViewPreview ref={elementref} key={key}>
    
-   { show ?  <ArticleView  key={key}>
+   { show ?  
+      <ArticleView  key={key}>
      
       <ArticleTitle>{article.title}</ArticleTitle>
       <ArticleImg src={article.img}/>
-       <ArticleAuthor> Por {article.author} </ArticleAuthor>
+      
        <DivTags>
            { 
              article.tags.map(tag => (
@@ -188,17 +191,18 @@ const LikesText = styled.p`
           
        </DivTags>
        <Articledescription>{article.content}</Articledescription>
-
+       <ArticleAuthor> Por {article.author} </ArticleAuthor>
       <LikeDiv>
         <LikeButton type='button' onClick={() => { userToken && addLike(article)}} /> 
         <Likes likes={Likes}> {likes} </Likes >
-     
-      </LikeDiv>
       <LikesText> {thanks} </LikesText>
+      </LikeDiv>
+      <CommentScreen/>
        
     </ArticleView>
          : <MyLoader/>
   }
+  
     </ArticleViewPreview>
     
    

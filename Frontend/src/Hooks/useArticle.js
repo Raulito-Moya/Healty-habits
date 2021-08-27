@@ -30,18 +30,22 @@ export const useArtcicle = (articlesStorage) => {
     
 
     const getExercisesArticles = () => {
-     
-      const result =  articlesStorage.filter( (article)=> article.category === 'Fit' )
+         if(articlesStorage){
+           const result =   articlesStorage.filter( (article)=> article.category === 'Fit' );
       
-      return result
+           return result;
+         }     
+
+      
       
     }
 
     const gethealthyFoodArticles = () => {
-       
+      if(articlesStorage){
       const result = articlesStorage.filter( (article)=> article.category === 'Healty Food' || article.category === 'Healty Integral' )
    
        return result
+      } 
     }
 
  return {likes,setLikes,thanks, addLike ,getExercisesArticles, gethealthyFoodArticles }
