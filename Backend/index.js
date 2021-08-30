@@ -28,7 +28,7 @@ const authRouters = require('./routes/auth.js')
 const usersRouters = require('./routes/users.js')
 const articlesRouters = require('./routes/articles.js');
 const LikesRouters = require('./routes/likes.js')
-
+const CommentsRouter = require('./routes/comments.js')
 
 
 /*app.get( '*' , (req,res) => {
@@ -36,10 +36,11 @@ const LikesRouters = require('./routes/likes.js')
     res.sendFile(path.join(__dirname, 'Frontend','public','index.html'))
   } )*/
 
-app.use('/api/auth',authRouters)
-app.use('/api/users',usersRouters)
-app.use('/api/articles',articlesRouters)
-app.use('/api/likes',LikesRouters)
+app.use('/api/auth',authRouters )
+app.use('/api/users',usersRouters )
+app.use('/api/articles',articlesRouters )
+app.use('/api/likes',LikesRouters )
+app.use('/api/comments',CommentsRouter )
 
 app.listen( process.env.PORT, () => {
     console.log(`Servidor corriendo en el puerto ${process.env.PORT}`);

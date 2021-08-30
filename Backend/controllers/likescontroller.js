@@ -1,6 +1,7 @@
 const { response, request } = require('express')
 const Likes  = require('../models/Likes')
 const { Article } = require('../models/Articles')
+const User = require('../models/User')
 const jwt =require('jsonwebtoken');
 
 
@@ -35,7 +36,9 @@ const postNewLike = async(req,res = response) => {
      // console.log(req.body);
    
     
-      const articleFound  = await Article.findById(article._id).populate({path:'likes'})
+      const articleFound = await Article.findById(article._id).populate({path:'likes'})
+      const userfound = await User.findById(userid).populate({path:'likes'})
+
       console.log(articleFound);
 
       const errorLike = articleFound.likes.filter(like => like.user == userid)
@@ -43,7 +46,12 @@ const postNewLike = async(req,res = response) => {
 
 
      if(errorLike.length > 0){  //delete the like if the user have it in the article
+         
+        
          const foundLike = await Likes.findByIdAndDelete(errorLike[0]._id)
+          await User.findByIdAndUpdate(userid, {$pull: {likes: errorLike[0] } })
+          await Article.findByIdAndUpdate(article._id, {$pull: {likes: errorLike[0] } })
+       
          console.log(foundLike);
 
        return res.status(200).json({msg:'the like have been deleted',rest:true})
@@ -57,14 +65,21 @@ const postNewLike = async(req,res = response) => {
 
     await like.save() 
    
+   
   
- 
 
   await Article.findByIdAndUpdate(article._id,{
     $set: {
         likes:[...articleFound.likes,like ]
     }
 
+  })
+  
+ 
+  await User.findByIdAndUpdate(userid,{
+    $set: {
+      likes:[...userfound.likes,like]
+    }
   })
 
 

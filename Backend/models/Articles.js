@@ -16,7 +16,7 @@ const articleSchema = new Schema({
   author:{type:String, required:[true, 'author is requiered'], deafault:'admin'},
   tags:{ type:Array, required:[true, 'tags is requiered'] },
   likes:[ {type:Schema.Types.ObjectId, ref:"Likes"} ],
-  comments:{ type:Array }
+  comments:[ { type:Schema.Types.ObjectId, ref:"Comments"} ]
   
 }
 )

@@ -33,7 +33,8 @@ const UserSchema = new Schema({
      default:false
     },
     articles:[ { type:Schema.Types.ObjectId, ref:"Article"} ],
-    likes:[ { type:Schema.Types.ObjectId, ref:"Likes"} ]
+    likes:[ { type:Schema.Types.ObjectId, ref:"Likes"} ],
+    comments:[ { type:Schema.Types.ObjectId, ref:"Comments"} ]
 
 
 })

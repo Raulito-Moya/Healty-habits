@@ -7,21 +7,23 @@ import postNewArticle from "../API/postNewArticle";
 const useCreateArticle = ({select}) => {
      
 
-  const { register, handleSubmit,watch, formState: { errors } }= useForm({
-    mode: "onBlur",
-  });
+ 
   
   const [file,setfile] = useState(null)
   const [isFormLoading, setisformLoading] = useState(false)
   const [wasPublished, setwasPublished] = useState(false)
   console.log(file);
 
+
+  const { register, handleSubmit,watch, formState: { errors } }= useForm({
+    mode: "onBlur",
+  });
+
  const onSubmit =  async(data,e) => {
-   await setisformLoading(true)   
-   
+    await setisformLoading(true)   
     await postNewArticle(data,file,select,setisformLoading,setwasPublished) 
-    
-    };
+      
+ };
 
 
     

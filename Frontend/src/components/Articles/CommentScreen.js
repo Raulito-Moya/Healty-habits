@@ -1,10 +1,11 @@
 import styled from "styled-components"
-import React, { useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import send from '../../assess/send.ico'
 import menu from '../../assess/menu.svg'
 import { ModalConfirmationDelete } from "../UX/ModalConfirmationDelete"
 import { useComment } from "../../Hooks/useComment"
 import { ModalSelectAction } from "../UX/ModalSelectAction"
+import { useForm } from "react-hook-form";
 
 const CommentDiv = styled.div`
 width: 90%;
@@ -69,7 +70,7 @@ const Comment = styled.div`
 
 
 
-const CommentWrite = styled.div`
+const CommentWrite = styled.form`
 width: 100%;
 height: 2.2em;
 border-radius: 10px;
@@ -129,12 +130,22 @@ const comments = [
 ]
 
  export const CommentScreen = () => {
-    
-    const { displayed,modal,positionNumber,displayModal,diplayCommentScreen,modalConfirmation, displayModalconfirmation } =  useComment()
-console.log(positionNumber);
+  let select = document.getElementById('form')
+ 
+
+ //todo:lo dejo aqui viendo el problema con el select
+  
+  console.log(select);
+    const { displayed,modal,positionNumber,displayModal,diplayCommentScreen,modalConfirmation, displayModalconfirmation,onSubmit } =  useComment({select})
+   console.log(positionNumber);
+   console.log(modal);
+   
+
+   const { register, handleSubmit,watch, formState: { errors } }= useForm({
+    mode: "onBlur",
+   });
 
 
-console.log(modal);
 
 
 
@@ -148,7 +159,7 @@ return(
        displayed  && 
       (
 
-       <CommentsScreen displayed={displayed} >
+      <CommentsScreen displayed={displayed} >
          <CommentsDisplay >
           {
             comments.map((comment, i) => (
@@ -160,16 +171,16 @@ return(
             ))
           
           }
-             {
+               {
                    modal && (<ModalSelectAction positionNumber = { positionNumber }  displayModalconfirmation = {displayModalconfirmation}/>)
                }
          </CommentsDisplay>
         
 
-        <CommentWrite >
-
-         <CommentTextArea placeholder="Type a comment here"/>
-         <CommentButtomSend/>
+        <CommentWrite id="form" enctype="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
+         
+          <CommentTextArea placeholder="Type a comment here" />
+          <CommentButtomSend onClick={()=> {console.log('hii')}}  />
        
         </CommentWrite>
 
@@ -177,7 +188,7 @@ return(
           modalConfirmation && <ModalConfirmationDelete displayModalconfirmation = {displayModalconfirmation} />
         }
         
-       </CommentsScreen>
+      </CommentsScreen>
        
       )
     

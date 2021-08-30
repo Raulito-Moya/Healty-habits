@@ -7,7 +7,9 @@ const postNewArticle = async(formValues, file, select,setisformLoading, setwasPu
     //headers.append('Accept', 'application/json');
   //  headers.append('Content-Type', 'multipart/form-data');
     
-   
+    let author = localStorage.getItem('userName')
+    const token = localStorage.getItem('userToken')
+
     
     const {title, content, tags} = formValues
     console.log(formValues);
@@ -16,10 +18,11 @@ const postNewArticle = async(formValues, file, select,setisformLoading, setwasPu
    // formData.append('title',title)
    // formData.append('content',content)
    // formData.append('image',file)
-    formData.append('author','Raul Admin')
+    formData.append('author',author)
     //formData.append('category','Fit')
     //formData.append('tags',tags)
     
+
      console.log(formData);
     const setting = {
         method: 'POST',
@@ -30,7 +33,7 @@ const postNewArticle = async(formValues, file, select,setisformLoading, setwasPu
 
       try {
          
-         let res = await fetch(`/api/articles/postArticle`, setting);
+         let res = await fetch(`/api/articles/postArticle/${token}`, setting);
          setisformLoading(false)
          setwasPublished(true)
          console.log(res);

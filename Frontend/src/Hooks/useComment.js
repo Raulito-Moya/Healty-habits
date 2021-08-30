@@ -1,16 +1,24 @@
 import { useState } from "react"
+import { useForm } from "react-hook-form";
+import { postComment } from "../API/postComment";
 
 
-
- export const useComment = () => {
-
+ export const useComment = ({select}) => {
+   console.log(select);
     const [displayed,setdiplayed] = useState(false);
     const [modal,setModal] = useState(false);
     const [positionNumber,setPositionNumber] = useState(null);
     const [modalConfirmation, setModalConfirmation] = useState(false)
+   
+     
+    const onSubmit = async(data,e) => {
+      console.log(data);
+      await postComment(data,select)
+
+    }
 
     const diplayCommentScreen = (e) => {
-        console.log(e.target);
+        
        setdiplayed(!displayed)
        
        modal && setModal(!modal)
@@ -38,6 +46,17 @@ import { useState } from "react"
     }
 
 
- return{ displayed,setdiplayed,modal,setModal, displayModal,diplayCommentScreen,positionNumber,modalConfirmation, displayModalconfirmation }
+ return{ 
+         displayed,
+         setdiplayed,
+         modal,
+         setModal, 
+         displayModal,
+         diplayCommentScreen,
+         positionNumber,
+         modalConfirmation, 
+         displayModalconfirmation, 
+         onSubmit 
+        }
 
 }

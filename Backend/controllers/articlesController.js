@@ -1,6 +1,8 @@
 const { response, request } = require('express')
 const {Article, CATEGORIES} = require('../models/Articles')
+const User = require('../models/User')
 const fs = require("fs")
+const jwt =require('jsonwebtoken');
 const cloudinary = require('cloudinary')
 const { createTags } = require('../helpers/createTags')
 cloudinary.config({
@@ -28,38 +30,57 @@ cloudinary.config({
 const postArticle = async(req, res) => {
  try {
     
-  const imageUploaded = await cloudinary.v2.uploader.upload(req.file.path)
+    const { token } = req.params
+      
+    const decoded = jwt.verify(token, process.env.JWT_USER_CONFIRMATION)
+    
+    const userid  = decoded.id
+     
+   
   
-  //console.log(imageUploaded.secured_url);
-
-  const {title, content, tags,author, category } = req.body 
-
- const tagsarray = createTags(tags)
- 
-  //console.log(req.body );
- //console.log(tagsarray);
-
-  !CATEGORIES.includes(category) &&  res.status(500).json({ok:'false', msg:'that category is not created'}) 
- 
-   const article = new Article({
-      title,
-      content,
-       tags:tagsarray,
-      author,
-      category,
-      img: imageUploaded.secure_url,
-      img_id: imageUploaded.public_id
-   })
   
-  await article.save()
-  res.status(200).json({ok:'article posted'})
- 
- fs.unlink(req.file.path, (err) => {
-   if (err) {
-     console.error(err)
-     return
-   }
-  })
+    const imageUploaded = await cloudinary.v2.uploader.upload(req.file.path)
+    
+    //console.log(imageUploaded.secured_url);
+  
+    const {title, content, tags,author, category } = req.body;
+  
+   const tagsarray = createTags(tags);
+   
+    //console.log(req.body );
+   //console.log(tagsarray);
+  
+    !CATEGORIES.includes(category) &&  res.status(500).json({ok:'false', msg:'that category is not created'});
+   
+     const article = new Article({
+        title,
+        content,
+         tags:tagsarray,
+        author,
+        category,
+        img: imageUploaded.secure_url,
+        img_id: imageUploaded.public_id
+     });
+    
+    await article.save();
+  
+    const userfound = await User.findById(userid)
+
+    await User.findByIdAndUpdate(userid,{
+      $set: {
+         articles:[...userfound.articles,article]
+      }
+    })
+    res.status(200).json({ok:'article posted'});
+   
+  
+    
+   fs.unlink(req.file.path, (err) => {
+     if (err) {
+       console.error(err)
+       return
+     }
+    });
   
 } catch (error) {
      console.log(error);

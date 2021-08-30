@@ -34,7 +34,7 @@ const upload = multer({
 
 
 router.get('/',getArticles)
-router.post('/postArticle',upload.single('image'),postArticle)
+router.post('/postArticle/:token',upload.single('image'),postArticle)
 router.put('/updateArticle', updateArticle)
 router.delete('/deleteArticle', deleteArticle)
 
