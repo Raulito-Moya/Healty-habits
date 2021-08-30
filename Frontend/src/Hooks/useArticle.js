@@ -10,7 +10,7 @@ export const useArtcicle = (articlesStorage) => {
     
 
     const [likes, setLikes] = useState(0)
-    const [thanks, setThanks] = useState('Deja un like si te ha gustado el articulo')   
+    const [thanks, setThanks] = useState('help the article with a like')   
    
 
    let articlesActive = getActiveArticles()
@@ -18,14 +18,17 @@ export const useArtcicle = (articlesStorage) => {
    
     const addLike = async(article) => {
      
-        await postAddLike(article)
+      const json = await postAddLike(article)
+       console.log(json);
        
-       if(likes >= 0) {
-        setLikes(likes + 1)
-        setThanks('Gracias!!')
-       }
-
-      //  e.target.disabled = true
+         if(json?.rest){
+          setLikes(likes - 1)
+          setThanks('help the article with a like')
+         }else{
+           setLikes(likes + 1)
+           setThanks('Thanks!!')
+         }
+         
     }
     
 

@@ -27,9 +27,9 @@ const postNewLike = async(req,res = response) => {
     try {
       const { token } = req.params
     
-      const decoded =   jwt.verify(token, process.env.JWT_USER_CONFIRMATION)
+      const decoded = jwt.verify(token, process.env.JWT_USER_CONFIRMATION)
       
-      const userid  =  decoded.id
+      const userid  = decoded.id
        console.log(userid);
       const {article} = req.body
      // console.log(req.body);
@@ -39,9 +39,14 @@ const postNewLike = async(req,res = response) => {
       console.log(articleFound);
 
       const errorLike = articleFound.likes.filter(like => like.user == userid)
-      console.log(errorLike);
-     if(errorLike.length > 0){
-       return res.status(406).json({error:'the user have a like in this article'})
+     // console.log(errorLike);
+
+
+     if(errorLike.length > 0){  //delete the like if the user have it in the article
+         const foundLike = await Likes.findByIdAndDelete(errorLike[0]._id)
+         console.log(foundLike);
+
+       return res.status(200).json({msg:'the like have been deleted',rest:true})
      }
 
 
@@ -63,7 +68,7 @@ const postNewLike = async(req,res = response) => {
   })
 
 
-    res.json({like})  
+    res.json({msg:'the like have been added',add:true})  
 
    } catch (error) {
         console.log(error);

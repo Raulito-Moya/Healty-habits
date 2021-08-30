@@ -7,6 +7,7 @@ import { useArtcicle } from '../../Hooks/useArticle';
 import MyLoader from '../UX/Loader';
 import { getLikesByArticles } from '../../API/getLikesByArticle';
 import { CommentScreen } from './CommentScreen';
+import { ModalEditComment } from '../UX/ModalConfirmationDelete';
 
 
 
@@ -18,7 +19,7 @@ const ArticleViewPreview = styled.div`
    flex-flow: column;
    margin-top: 80px;
    width: 80%;
-  
+   z-index:1;
    @media screen and (max-width:500px){
     width: 100%;
    }  
@@ -82,10 +83,16 @@ const Articledescription = styled.p`
   
   font-family: Verona, Geneva, Tahoma, sans-serif;
   font-size: 1.7em;
-  padding: 10px ;
+   
   letter-spacing: 1px;
-  width: 80%;
   
+  
+  width: 95%;
+  
+  line-height: 1.5em;
+  
+
+
 `
 
 const LikeDiv = styled.div`
@@ -175,8 +182,10 @@ const LikesText = styled.p`
    
     <ArticleViewPreview ref={elementref} key={key}>
    
-   { show ?  
-      <ArticleView  key={key}>
+   { 
+    
+    show ?  
+    <ArticleView  key={key}>
      
       <ArticleTitle>{article.title}</ArticleTitle>
       <ArticleImg src={article.img}/>
@@ -192,17 +201,19 @@ const LikesText = styled.p`
        </DivTags>
        <Articledescription>{article.content}</Articledescription>
        <ArticleAuthor> Por {article.author} </ArticleAuthor>
-      <LikeDiv>
-        <LikeButton type='button' onClick={() => { userToken && addLike(article)}} /> 
-        <Likes likes={Likes}> {likes} </Likes >
-      <LikesText> {thanks} </LikesText>
-      </LikeDiv>
+       
+         <LikeDiv>
+           <LikeButton type='button' onClick={() => { userToken && addLike(article)}} /> 
+           <Likes likes={Likes}> {likes} </Likes >
+         <LikesText> {thanks} </LikesText>
+         </LikeDiv>
+
       <CommentScreen/>
        
     </ArticleView>
          : <MyLoader/>
   }
-  
+
     </ArticleViewPreview>
     
    

@@ -18,6 +18,7 @@ import { ForgotPasswordForm } from './components/Auth/ForgotPasswordForm'
 import { EmailResetPasswordModal } from './components/Auth/EmailResetPasswordModal'
 import { ConfirmationPasswordaModal } from './components/Auth/ConfimationPasswordModal'
 import { ModalConfirmations } from './components/UX/ModalConfirmations'
+import { ModalConfirmationDelete } from './components/UX/ModalConfirmationDelete'
 
 
 
@@ -74,7 +75,8 @@ return (
      <Header/> ) }
       {!changePath  && (
       <ModalConfirmations /> ) }
-     
+    
+
      <ScrollToTop/>
   
      <Switch>
