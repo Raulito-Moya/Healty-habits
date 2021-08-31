@@ -4,24 +4,25 @@ const moongose = require('mongoose');
 const Schema = moongose.Schema;
 
 
-const commentsSchema = new Schema({
+const commentSchema = new Schema({
     creationDate: {type: Number, default: Date.now},
     user:{
       type: Schema.Types.ObjectId,
-      ref:"User"
+      ref:"User",
+      required:[true,'the User content is required']
     },
     article:{
      type: Schema.Types.ObjectId,
      ref: "Article",
-     required:true
+     required:[true,'the Article content is required']
    },
    content:{
        type:String,
-       required:[true,'the comment content is required']
+       required:[true,'the Comment Content is required']
    }
  
  })
 
- const Comment = moongose.model('Comment',commentsSchema)
+ const Comment = moongose.model('Comments',commentSchema)
 
  module.exports = Comment

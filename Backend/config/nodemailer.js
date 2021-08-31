@@ -19,7 +19,7 @@ const {
          OAUTH_CLIENT_SECRET,
           OAUTH_REDERICT_URI
           )
-        //console.log(oauth2Client);
+       // console.log(oauth2Client);
         
         
         
@@ -42,7 +42,7 @@ const {
           });
         });
         
-        console.log('este es mi token', accessToken);
+        console.log('this is my token :)', accessToken);
         
         
            const transporter = nodemailer.createTransport({
