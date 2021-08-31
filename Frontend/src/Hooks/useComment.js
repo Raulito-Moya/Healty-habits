@@ -4,18 +4,14 @@ import { postComment } from "../API/postComment";
 
 
  export const useComment = ({select}) => {
-   console.log(select);
+ 
     const [displayed,setdiplayed] = useState(false);
     const [modal,setModal] = useState(false);
     const [positionNumber,setPositionNumber] = useState(null);
     const [modalConfirmation, setModalConfirmation] = useState(false)
    
      
-    const onSubmit = async(data,e) => {
-      console.log(data);
-      await postComment(data,select)
-
-    }
+   
 
     const diplayCommentScreen = (e) => {
         
@@ -56,7 +52,7 @@ import { postComment } from "../API/postComment";
          positionNumber,
          modalConfirmation, 
          displayModalconfirmation, 
-         onSubmit 
+         
         }
 
 }

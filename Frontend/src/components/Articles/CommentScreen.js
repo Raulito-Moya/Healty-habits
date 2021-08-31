@@ -1,11 +1,12 @@
 import styled from "styled-components"
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import send from '../../assess/send.ico'
 import menu from '../../assess/menu.svg'
 import { ModalConfirmationDelete } from "../UX/ModalConfirmationDelete"
 import { useComment } from "../../Hooks/useComment"
 import { ModalSelectAction } from "../UX/ModalSelectAction"
 import { useForm } from "react-hook-form";
+import { postComment } from "../../API/postComment"
 
 const CommentDiv = styled.div`
 width: 90%;
@@ -125,18 +126,28 @@ const LittleModal = styled.nav`
 
 
 
-const comments = [
-'hi this article its great','I love this article', 'That its true a like this article '
-]
+   const comments = [
+   'hi this article its great','I love this article', 'That its true a like this article '
+   ]
 
- export const CommentScreen = () => {
+export const CommentScreen = ({article}) => {
   let select = document.getElementById('form')
+
  
 
- //todo:lo dejo aqui viendo el problema con el select
-  
-  console.log(select);
-    const { displayed,modal,positionNumber,displayModal,diplayCommentScreen,modalConfirmation, displayModalconfirmation,onSubmit } =  useComment({select})
+  //console.log(select);
+    const { 
+      displayed,
+      modal,
+      positionNumber,
+      displayModal,
+      diplayCommentScreen,
+      modalConfirmation, 
+      displayModalconfirmation
+       } =  useComment({select})
+
+
+
    console.log(positionNumber);
    console.log(modal);
    
@@ -145,13 +156,25 @@ const comments = [
     mode: "onBlur",
    });
 
+    useEffect(()=>{
+  select = document.getElementById('form')
+  
+   
+ 
 
+ },[displayed]) 
+  
+ 
+ const onSubmit = async(data,e) => {
+  console.log(data);
+  console.log('mm');
+  await postComment(article,select)
 
-
+ }
 
 return(
   
-  <CommentDiv>
+  <CommentDiv >
     
       <CommentButtom  onClick={diplayCommentScreen}>comment</CommentButtom>
      {
@@ -177,9 +200,9 @@ return(
          </CommentsDisplay>
         
 
-        <CommentWrite id="form" enctype="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
+        <CommentWrite  id="form" enctype="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
          
-          <CommentTextArea placeholder="Type a comment here" />
+          <CommentTextArea  placeholder="Type a comment here" name="textContent"  {...register("textContent",/* {required:true,pattern:/\S+$/,message:"should be 10 length"}*/)} />
           <CommentButtomSend onClick={()=> {console.log('hii')}}  />
        
         </CommentWrite>

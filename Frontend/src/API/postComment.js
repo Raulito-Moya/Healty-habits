@@ -1,5 +1,5 @@
 
- export const postComment = async(data,select) => {
+ export const postComment = async(article,select) => {
 
  const token = localStorage.getItem('userToken'); 
  const headers = new Headers();
@@ -7,8 +7,8 @@
   headers.append('Content-Type', 'application/json');*/
     
   const formData = new FormData(select)
- // formData.append()
-
+   formData.append('IDarticle',article._id )
+   console.log(select);
 
    const setting = {
      method: 'POST',

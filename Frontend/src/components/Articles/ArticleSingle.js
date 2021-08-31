@@ -208,7 +208,7 @@ const LikesText = styled.p`
          <LikesText> {thanks} </LikesText>
          </LikeDiv>
 
-      <CommentScreen/>
+      <CommentScreen article={article}/>
        
     </ArticleView>
          : <MyLoader/>
