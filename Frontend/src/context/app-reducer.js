@@ -1,4 +1,4 @@
-import { SET_ARTICLES, SET_CHANGE_PATH, SET_DIFERENT_PASSWORD, SET_IS_LOADING, SET_LOGIN_ERROR } from "./types"
+import { SET_ARTICLES, SET_COMMENTS,NEW_COMMENT, SET_CHANGE_PATH, SET_DIFERENT_PASSWORD, SET_IS_LOADING, SET_LOGIN_ERROR } from "./types"
 
 
 
@@ -19,13 +19,25 @@ export const appReducer = (state, action) => {
            changePath: action.payload
          }   
          
-         
+         //Articles
       case SET_ARTICLES:
         return{
           ...state,
           articles: action.payload
+        }  
+        
+        //Comments
+      case SET_COMMENTS:
+        return{
+          ...state,
+          comments: action.payload
         }   
-    
+      
+      case NEW_COMMENT:
+        return{
+          ...state,
+          newCommentSearch: action.payload
+        }
         
       //AUTH
       case SET_LOGIN_ERROR:

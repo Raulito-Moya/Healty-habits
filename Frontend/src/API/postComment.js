@@ -1,5 +1,9 @@
+import { useState } from "react";
+import { useStorage } from "../context/useStorage";
+
 
  export const postComment = async(article,select) => {
+  
 
  const token = localStorage.getItem('userToken'); 
  const headers = new Headers();
@@ -21,6 +25,7 @@
       
         let res = await fetch(`/api/comments/addcomment/${token}`, setting);
         let json = await res.json();
+      
         return json
         
       } catch (error) {

@@ -7,6 +7,7 @@ import { useComment } from "../../Hooks/useComment"
 import { ModalSelectAction } from "../UX/ModalSelectAction"
 import { useForm } from "react-hook-form";
 import { postComment } from "../../API/postComment"
+import { useStorage } from "../../context/useStorage"
 
 const CommentDiv = styled.div`
 width: 90%;
@@ -126,15 +127,15 @@ const LittleModal = styled.nav`
 
 
 
-   const comments = [
+   const commentsMock = [
    'hi this article its great','I love this article', 'That its true a like this article '
    ]
 
 export const CommentScreen = ({article}) => {
-  let select = document.getElementById('form')
-
- 
-
+  const { comments, setComments, newCommentSearch, setcommentPosted} = useStorage()
+   const userwriterid = localStorage.getItem('writerid')
+   let select = document.getElementById('form')
+    
   //console.log(select);
     const { 
       displayed,
@@ -143,34 +144,36 @@ export const CommentScreen = ({article}) => {
       displayModal,
       diplayCommentScreen,
       modalConfirmation, 
-      displayModalconfirmation
+      displayModalconfirmation,
+     
        } =  useComment({select})
 
-
-
-   console.log(positionNumber);
-   console.log(modal);
-   
+      
 
    const { register, handleSubmit,watch, formState: { errors } }= useForm({
     mode: "onBlur",
    });
 
+   useEffect(()=>{
+     select = document.getElementById('form')
+     
+      
+    },[displayed]) 
+  
     useEffect(()=>{
-  select = document.getElementById('form')
+     setComments(article._id)
+     
+    },[newCommentSearch])
   
+
+   const onSubmit = async(data,e) => {
+    console.log(data);
+  
+    await postComment(article,select)
+     e.target.reset()
    
- 
-
- },[displayed]) 
-  
- 
- const onSubmit = async(data,e) => {
-  console.log(data);
-  console.log('mm');
-  await postComment(article,select)
-
- }
+    setcommentPosted(!newCommentSearch)
+   }
 
 return(
   
@@ -185,13 +188,13 @@ return(
       <CommentsScreen displayed={displayed} >
          <CommentsDisplay >
           {
-            comments.map((comment, i) => (
+           comments ? comments.map((comment, i) => (
                <Comment key={i} id={i} >
-                 <span>By Raul Admin:</span>
-                  <p>{comment}</p>
-                  <button type="click" id='diplayModal' onClick={()=>{displayModal(i)} }/> 
+                 <span>By {comment.author}</span>
+                  <p>{comment.content}</p>
+               {comment.writerid === userwriterid && (<button type="click" id='diplayModal' onClick={()=>{displayModal(i)} }/>) }   
                 </Comment>
-            ))
+            )) : <h1>Be the first in comment the article</h1>
           
           }
                {
@@ -202,8 +205,9 @@ return(
 
         <CommentWrite  id="form" enctype="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
          
-          <CommentTextArea  placeholder="Type a comment here" name="textContent"  {...register("textContent",/* {required:true,pattern:/\S+$/,message:"should be 10 length"}*/)} />
-          <CommentButtomSend onClick={()=> {console.log('hii')}}  />
+
+          <CommentTextArea   placeholder="Type a comment here" name="textContent"  {...register("textContent",/* {required:true,pattern:/\S+$/,message:"should be 10 length"}*/)} />
+          <CommentButtomSend id="button" type="submit"  />
        
         </CommentWrite>
 

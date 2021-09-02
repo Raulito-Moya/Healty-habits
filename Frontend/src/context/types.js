@@ -4,3 +4,7 @@ export const SET_ARTICLES = 'SET_ARTICLES';
 
 export const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR'
 export const SET_DIFERENT_PASSWORD = 'SET_DIFERENT_PASSWORD'
+
+
+export const SET_COMMENTS = 'SET_COMMENTS'
+export const NEW_COMMENT = 'NEW_COMMENT'

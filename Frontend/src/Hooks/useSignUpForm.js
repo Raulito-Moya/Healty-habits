@@ -18,7 +18,7 @@ import { useStorage } from "../context/useStorage";
         //console.log('me estoy llamado')
         const res =   await createUser(data)
         console.log(res);
-        const {token, redirect, name} = res
+        const {token, redirect, name, writerid} = res
         console.log(res.error);
          if(res.error){ return setLoginError(res.error)}
         
@@ -26,6 +26,7 @@ import { useStorage } from "../context/useStorage";
 
           confirm && localStorage.setItem('userToken',token )
           confirm && localStorage.setItem('userName',name )
+          confirm && localStorage.setItem('writerid',writerid )
 
            setTimeout(() => {
               history.push(redirect)

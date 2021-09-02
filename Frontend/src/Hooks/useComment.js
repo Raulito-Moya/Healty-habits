@@ -4,7 +4,7 @@ import { postComment } from "../API/postComment";
 
 
  export const useComment = ({select}) => {
- 
+   
     const [displayed,setdiplayed] = useState(false);
     const [modal,setModal] = useState(false);
     const [positionNumber,setPositionNumber] = useState(null);
@@ -52,7 +52,7 @@ import { postComment } from "../API/postComment";
          positionNumber,
          modalConfirmation, 
          displayModalconfirmation, 
-         
+    
         }
 
 }
