@@ -16,6 +16,15 @@ const commentSchema = new Schema({
      ref: "Article",
      required:[true,'the Article content is required']
    },
+   author:{
+     type:String,
+     required:[true,'the Author  is required']
+   },
+   writerid:{
+     type:Schema.Types.ObjectId,
+     ref:"User",
+     required:[true,'The writerID is required']
+   },
    content:{
        type:String,
        required:[true,'the Comment Content is required']

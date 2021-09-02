@@ -34,7 +34,11 @@ const UserSchema = new Schema({
     },
     articles:[ { type:Schema.Types.ObjectId, ref:"Article"} ],
     likes:[ { type:Schema.Types.ObjectId, ref:"Likes"} ],
-    comments:[ { type:Schema.Types.ObjectId, ref:"Comments"} ]
+    comments:[ { type:Schema.Types.ObjectId, ref:"Comments"} ],
+    writerid:{
+        type:Schema.Types.ObjectId,
+        required:[true,'The writerID is required']
+    }
 
 
 })

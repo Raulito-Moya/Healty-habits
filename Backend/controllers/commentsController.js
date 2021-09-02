@@ -5,6 +5,27 @@ const User = require('../models/User')
 const Comment = require('../models/Comments')
 
 
+const getCommentsbyArticle = async(req = request,res = response) => { 
+   try {
+      const {id:IDArticle} = req.params;
+      const articlefinded = await Article.findById(IDArticle);
+
+      const Commentsfound = await Comment.find({_id: { $in: articlefinded.comments }});
+     
+     
+
+      if(Commentsfound){
+        res.json(Commentsfound)
+      }
+   } catch (error) {
+     console.log(error);
+   }
+
+
+
+ };
+
+
 const postComment = async(req = request,res = response) => {
    try {
      const { token } = req.params;  
@@ -23,7 +44,9 @@ const postComment = async(req = request,res = response) => {
      const comment = new Comment({
         user: userfound._id,
         article: articleFound._id,
-        content:textContent
+        author: userfound.name,
+        content: textContent,
+        writerid: userfound.writerid
      })
     
      await comment.save()
@@ -57,4 +80,4 @@ const postComment = async(req = request,res = response) => {
 }
 
 
-module.exports = {postComment}
+module.exports = { getCommentsbyArticle,postComment}

@@ -2,10 +2,10 @@ const router = require('express').Router();
 const multer = require('multer');
 const upload = multer();
 
-const {postComment } = require('../controllers/commentsController')
+const { getCommentsbyArticle,postComment } = require('../controllers/commentsController')
 
 
-
-router.post(`/addcomment/:token`,upload.none(), postComment)
+router.get('/getcomments/:id',getCommentsbyArticle)
+router.post('/addcomment/:token',upload.none(), postComment)
 
 module.exports = router

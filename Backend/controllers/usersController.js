@@ -25,13 +25,15 @@ const postUser = async(req,res = response) => {
    console.log(req.body);
   if(password !== confirmPassword ) return res.status(400).json({error:'The passsword should be equals'})
 
-  const id = mongoose.Types.ObjectId()
+  const id = mongoose.Types.ObjectId();
+  const writerid = mongoose.Types.ObjectId();
+
   const user = new User({
      _id:id,
      name,
      email,
      password,
-     confirmPassword
+     writerid
   })
 
   const salt = bcryptjs.genSaltSync()
@@ -46,7 +48,7 @@ const postUser = async(req,res = response) => {
   }, process.env.JWT_USER_CONFIRMATION);
 
 
- res.status(200).json({token,redirect:'/confirmation',name:name})
+ res.status(200).json({token, redirect:'/confirmation', name:name, writerid:writerid})
 
 }
 
