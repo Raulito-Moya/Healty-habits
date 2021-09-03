@@ -40,6 +40,8 @@ export const appReducer = (state, action) => {
         }
         
       //AUTH
+     
+
       case SET_LOGIN_ERROR:
         return{
           ...state,

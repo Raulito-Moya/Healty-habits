@@ -4,9 +4,11 @@ import confirm from '../../assess/confirm.svg'
 import no_confirm from '../../assess/no.svg'
 
 import { useState } from "react"
+import { deleteComment } from "../../API/deleteComment"
+import { useStorage } from "../../context/useStorage"
 
 
-export const ModalConfirmationDelete = ({displayModalconfirmation}) => {
+export const ModalConfirmationDelete = ({displayModalconfirmationDelete,commentID}) => {
    
 
    const Menu = styled.div`
@@ -100,23 +102,33 @@ export const ModalConfirmationDelete = ({displayModalconfirmation}) => {
     }
   `
 
-  const [deleteDiplay,setdeleteDisplay ] = useState(true)
-   
+
+  const {  newCommentSearch, setcommentPosted} = useStorage() 
+  
+   console.log(commentID);
+    
+   const onsubmit = async() => {
+     const res = await deleteComment(commentID)
+     
+     displayModalconfirmationDelete()
+     setcommentPosted(!newCommentSearch)
+
+   }
 
 
   return(
       
        <Menu>
-           <button type="click" onClick={() => displayModalconfirmation()}/>
+           <button type="click" onClick = { displayModalconfirmationDelete } />
            <h4>Are you sure do you want delete this comment</h4>
 
            <div className="select">
                <div className="edit">
-             <ConfirmDelete /> <p>Yes  </p>
-          </div>
-          <div className="delete">
-           <NoConfirm onClick={displayModalconfirmation}/> <p>No</p>
-          </div>
+                <ConfirmDelete onClick={onsubmit}/> <p>Yes  </p>
+               </div>
+            <div className="delete">
+             <NoConfirm onClick = { displayModalconfirmationDelete } /> <p>No</p>
+            </div>
            </div>
          
         

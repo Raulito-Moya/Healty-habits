@@ -17,7 +17,8 @@ export const AppState = (props) => {
     articles: [],
     comments: [],
     newCommentSearch: false,
-    token: null
+    token: null,
+ 
   }
 
 
@@ -112,7 +113,8 @@ export const AppState = (props) => {
         comments: state.comments,
         setComments,
         newCommentSearch: state.newCommentSearch,
-        setcommentPosted
+        setcommentPosted,
+       
 
      
      }}

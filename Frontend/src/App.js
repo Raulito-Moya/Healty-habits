@@ -18,25 +18,22 @@ import { ForgotPasswordForm } from './components/Auth/ForgotPasswordForm'
 import { EmailResetPasswordModal } from './components/Auth/EmailResetPasswordModal'
 import { ConfirmationPasswordaModal } from './components/Auth/ConfimationPasswordModal'
 import { ModalConfirmations } from './components/UX/ModalConfirmations'
-import { ModalConfirmationDelete } from './components/UX/ModalConfirmationDelete'
+import { PrivateRoute } from './Routes/PrivateRoute'
+
 
 
 
 
 const App = ()=>{
 
-  const AppStyled = styled.div`
-   display: flex;
-   flex-flow: column;
-   height: 100%;
-   justify-content: space-between;
-   align-content: space-between;
-  `
+
 
 /*const Articles = lazy(()=> import('./components/Articles/Articles'))
 const ExercisesArticles = lazy(() => import('./components/Articles/ExerciseArticles'))
 const HealtyFoodArticle = lazy(() => import('./components/Articles/HealthyFoodArticles') )
 */
+
+let isLoged = localStorage.getItem('userToken')
 
 let url = window.location.hash
  useEffect(()=> {
@@ -88,10 +85,10 @@ return (
         <Route path="/forgotpassword/form" component={ForgotPasswordForm}/>
         <Route path="/forgotpassword/confirmation"  component={ConfirmationPasswordaModal}/>
 
-        <Route path="/" exact  component={Articles} />
+        <Route path="/" exact component={Articles} />
         <Route path="/articles/exercises"  component={ExercisesArticles} />
         <Route path="/articles/healthyfood"  component={HealtyFoodArticle} />
-        <Route path="/articles/createarticle"  component={CreateArticle} />
+        <PrivateRoute path="/articles/createarticle"  component={CreateArticle} isLoged={isLoged}/>
         <Route path = "*" component={Articles} />
      </Switch>
 

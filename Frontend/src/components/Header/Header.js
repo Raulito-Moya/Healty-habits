@@ -134,8 +134,8 @@ const SelectLinkTable = styled.ul`
 
 const Header = () => {
    
+ const isLoaged = localStorage.getItem('userToken')
 
- // const state =  useStorage()
  
 const {NavisOpen,BottomText,openNav, GoArticles, openArticles} = useHeader()
 
@@ -157,8 +157,8 @@ const {NavisOpen,BottomText,openNav, GoArticles, openArticles} = useHeader()
          </SelectLinkTable >
          <ListItem  >Features </ListItem  >
          <ListItem  >Contact </ListItem  >
-         <ListItem to="/login" >Login & SignUp </ListItem  >
-         <ListItem to="/articles/createarticle" >Create Article </ListItem  >
+         <ListItem to="/login" > Login & SignUp </ListItem  >
+       {isLoaged && <ListItem to="/articles/createarticle" > Create Article </ListItem  >}  
        </ListNav>
      </NavWrapper>
        

@@ -4,7 +4,7 @@ import { useStorage } from "../context/useStorage";
 
  export const postComment = async(article,select) => {
   
-
+   console.log(select);
  const token = localStorage.getItem('userToken'); 
  const headers = new Headers();
  /* headers.append('Accept', 'application/json');
@@ -25,7 +25,8 @@ import { useStorage } from "../context/useStorage";
       
         let res = await fetch(`/api/comments/addcomment/${token}`, setting);
         let json = await res.json();
-      
+       console.log(json);
+        localStorage.setItem('writerid',json.comment.writerid)
         return json
         
       } catch (error) {

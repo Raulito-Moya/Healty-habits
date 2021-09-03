@@ -27,6 +27,8 @@ import { useStorage } from "../context/useStorage";
           confirm && localStorage.setItem('userToken',token )
           confirm && localStorage.setItem('userName',name )
           confirm && localStorage.setItem('writerid',writerid )
+           
+          
 
            setTimeout(() => {
               history.push(redirect)

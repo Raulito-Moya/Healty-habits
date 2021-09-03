@@ -5,7 +5,7 @@ import edit from '../../assess/edit.svg'
 import { useComment } from "../../Hooks/useComment"
 
 
- export const ModalSelectAction = ({positionNumber,displayModalconfirmation}) => {
+ export const ModalSelectAction = ({positionNumber, displayModalconfirmationDelete, displayEditComment}) => {
 
 
     const LittleModal = styled.nav`
@@ -62,9 +62,9 @@ const ButtonDelete = styled.button`
 
   return(
       <LittleModal positionNumber={positionNumber}>
-         <ButtonDelete onClick={() => displayModalconfirmation()}/>
-         <ButtonEdit/>
-
+         <ButtonDelete onClick={() => displayModalconfirmationDelete()}/>
+         <ButtonEdit onClick={()=> displayEditComment()} />
+      
       </LittleModal>
   )
 

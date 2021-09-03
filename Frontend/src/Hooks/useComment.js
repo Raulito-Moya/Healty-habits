@@ -8,9 +8,11 @@ import { postComment } from "../API/postComment";
     const [displayed,setdiplayed] = useState(false);
     const [modal,setModal] = useState(false);
     const [positionNumber,setPositionNumber] = useState(null);
-    const [modalConfirmation, setModalConfirmation] = useState(false)
-   
-     
+
+    const [modalConfirmationDelete, setModalConfirmationDelete] = useState(false)
+    const [editComment, setEditComment] = useState(false)
+    const [deleteComment,setDeleteComment] = useState(false)
+    //const [CommentID, setCommentID] = useState(false)
    
 
     const diplayCommentScreen = (e) => {
@@ -21,28 +23,51 @@ import { postComment } from "../API/postComment";
      }
 
 
-    const displayModal = (i) => {
+    const displayModal = (i,commentID) => {
         setModal(!modal)
           
         const ele = document.getElementById("diplayModal")
         const comment = document.getElementById(`${i}`)
          
-    
-          
-        setPositionNumber(comment.offsetTop + ele.offsetTop + 35)
+        
+         localStorage.setItem('editcommentvalue',commentID)
+         
+        setPositionNumber(comment.offsetTop + ele.offsetTop + 35) //the postion for the ModalSelection
       }
    
-    const displayModalconfirmation =() => {
-      setModalConfirmation(!modalConfirmation);
+      
+    const displayModalconfirmationDelete =() => {
+      let commentID = localStorage.getItem('editcommentvalue')
+      setDeleteComment(commentID)
+      
 
 
-     modal && setModal(!modal)
-     console.log(modalConfirmation);
+      setModalConfirmationDelete(!modalConfirmationDelete);
+
+      modal && setModal(!modal)
+    
 
     }
 
+   const displayEditComment = () => {
+    let commentID = localStorage.getItem('editcommentvalue')
 
- return{ 
+    setEditComment(commentID)
+
+    modal && setModal(!modal)
+   } 
+
+
+   const cancelEditComment = () => {
+
+     setEditComment(false)
+
+   }
+
+
+
+
+ return { 
          displayed,
          setdiplayed,
          modal,
@@ -50,9 +75,12 @@ import { postComment } from "../API/postComment";
          displayModal,
          diplayCommentScreen,
          positionNumber,
-         modalConfirmation, 
-         displayModalconfirmation, 
-    
+         modalConfirmationDelete, 
+         displayModalconfirmationDelete, 
+         editComment,
+         displayEditComment,
+         cancelEditComment,
+         deleteComment
         }
 
 }
