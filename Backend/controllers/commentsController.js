@@ -75,9 +75,49 @@ const postComment = async(req = request,res = response) => {
    }
   
 
+}
 
+
+const updateComment = async(req = request,res = response) => {
+  try {
+
+      const { id:IDComment } = req.params;
+      const { content } = req.body 
+
+      const commentUpdated= await Comment.findByIdAndUpdate(IDComment,{content:content},{new:true})
+
+    
+
+    res.json(commentUpdated)
+
+  } catch (error) {
+    console.log(error);
+  }
 
 }
 
 
-module.exports = { getCommentsbyArticle,postComment}
+const deleteComment = async(req = request,res = response) => {
+
+   try {
+     
+    const { id:IDComment } = req.params;
+    
+  
+    const commentDeleted = await Comment.findByIdAndDelete(IDComment)
+  
+     const userfound = await User.findOneAndUpdate({comments:IDComment},{$pull: {comments: commentDeleted._id } })
+     const articlefound = await Article.findOneAndUpdate({comments:IDComment},{$pull: {comments: commentDeleted._id } })
+
+    res.json(commentDeleted)
+    
+  
+   } catch (error) {
+     console.log(error);
+   }
+  
+
+}
+
+
+module.exports = { getCommentsbyArticle,postComment,updateComment,deleteComment}
