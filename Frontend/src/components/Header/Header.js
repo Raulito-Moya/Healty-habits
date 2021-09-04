@@ -104,7 +104,7 @@ const ListNav = styled.div`
   justify-content:flex-start;
 `
 
-const ListItem = styled(Link)`
+ export const ListItem = styled(Link)`
   text-decoration: none;
    margin-top: 70px;
    font-size: 2em;

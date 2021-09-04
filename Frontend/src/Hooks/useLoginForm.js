@@ -18,7 +18,7 @@ import { useStorage } from "../context/useStorage";
          setisLoading(true)
 
          const res = await loginUser(data)
-         const {name, email, redirect, token} = res
+         const {name, email, redirect, token,writerid} = res
            console.log(res);
 
          if(res.error){
@@ -28,7 +28,7 @@ import { useStorage } from "../context/useStorage";
 
          res && localStorage.setItem('userToken',token )
          res && localStorage.setItem('userName',name )
-         
+         res && localStorage.setItem('writerid',writerid)
         
          
          redirect &&  setTimeout(() => {
