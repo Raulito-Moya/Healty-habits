@@ -1,5 +1,5 @@
 const express = require('express')
-require('dotenv').config();
+require('dotenv').config({path: '.env'});
 const cors = require('cors');
 const path = require('path')
 const bodyParser = require('body-parser');
@@ -45,6 +45,7 @@ app.use('/api/articles',articlesRouters )
 app.use('/api/likes',LikesRouters )
 app.use('/api/comments',CommentsRouter )
 
+console.log(process.env);
 app.listen( process.env.PORT, () => {
     console.log(`Servidor corriendo en el puerto ${process.env.PORT}`);
 });
