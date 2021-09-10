@@ -57,6 +57,7 @@ const {
               clientSecret:  OAUTH_CLIENT_SECRET,
               refreshToken : OAUTH_REFRESH_TOKEN,
               accessToken:    accessToken,
+              expires: 1494388182480
             },
           });
         

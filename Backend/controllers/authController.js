@@ -30,7 +30,7 @@ const loginUser = async(req,res) => {
    if(!matchPassword) return res.status(400).json({error:"Error comparing password"})   
  
    
-   res.json({name: userFound.name, email: userFound.email,redirect:'/', token:token})
+   res.json({name: userFound.name, email: userFound.email,redirect:'/', token:token, writerid:userFound.writerid})
 
 
  } catch (error) {
