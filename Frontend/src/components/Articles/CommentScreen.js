@@ -109,7 +109,7 @@ const CommentButtomSend = styled.button`
    background-image: ${`url(${send})`};
    background-repeat: no-repeat;
    background-color: white;
-   
+   width: 60px;
    border: 1px solid;
    border-left: none;
    border-radius: 10px;
