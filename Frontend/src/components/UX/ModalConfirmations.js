@@ -10,27 +10,54 @@ export const ModalConfirmations = () => {
   const Page = styled.section`
    
      
-    display:flex;
+ 
     position: fixed;
     justify-content:center;
     align-items:center;
     background-color: grey;
     padding: 5px;
-    top: ${props => (props.state === true ? '80px' : '0px')};
+    top: ${props => (props.state === true ? '80px' : '-200px')};
     transition: all 1.5s ease;
-    
+    width: auto;
+    height: 50px;
     z-index: 100;
+    border-radius: 20px;
+    width: 90%;
     `
 
    const MessageCard = styled.article`
- 
-    justify-self: center;
+     
     display: flex;
-       flex-direction: row;
-       background: aquamarine;
+    flex-direction: row;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    background: aquamarine;
+    border-radius: 20px;
+    padding: 10px;
+   `
+
+   const Info = styled.p`
+     font-size: 20px;
+     
+
+   `
+
+   const Button = styled.button`
+    align-self: center;
    
    `
  
+ const LinkCreateArticle = styled(Link)`
+  align-self: center;
+  font-size :30px ;
+  text-decoration: none;
+  color: blue;
+  &:hover{
+    color:red
+  }
+
+ 
+ `
    
 
   const [state,setState] = useState(true)
@@ -45,8 +72,8 @@ export const ModalConfirmations = () => {
      !isLoged && (
        <>
         <MessageCard >
-         Login your account for can post your article in the blog
-         <button type="click" onClick={()=>setState(false)}>off</button>
+        <Info>Login your account for can post your article in the blog</Info> 
+         <Button type="click" onClick={()=>setState(false)}>off</Button>
         </MessageCard>
        
         </>)
@@ -54,9 +81,9 @@ export const ModalConfirmations = () => {
        {
       isLoged && (
         <MessageCard >
-         <p>  Now You  can post your article in the blog</p>
-         <Link to="/articles/createarticle" onClick={()=>setState(false)}> create article</Link>
-         <button type="click" onClick={()=>setState(false)}>off</button>
+         <Info>  Now You  can post your article in the blog</Info>
+         <LinkCreateArticle to="/articles/createarticle" onClick={()=>setState(false)}> create article</LinkCreateArticle>
+         <Button type="click" onClick={()=>setState(false)}>off</Button>
         </MessageCard>)
       }
 

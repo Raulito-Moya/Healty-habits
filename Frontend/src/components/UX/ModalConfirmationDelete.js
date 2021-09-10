@@ -8,7 +8,7 @@ import { deleteComment } from "../../API/deleteComment"
 import { useStorage } from "../../context/useStorage"
 
 
-export const ModalConfirmationDelete = ({displayModalconfirmationDelete,commentID}) => {
+export const ModalConfirmationDelete = ({displayModalconfirmationDelete,commentID,newCommentSearch,setCommentPosted}) => {
    
 
    const Menu = styled.div`
@@ -103,7 +103,6 @@ export const ModalConfirmationDelete = ({displayModalconfirmationDelete,commentI
   `
 
 
-  const {  newCommentSearch, setcommentPosted} = useStorage() 
   
    console.log(commentID);
     
@@ -111,7 +110,7 @@ export const ModalConfirmationDelete = ({displayModalconfirmationDelete,commentI
      const res = await deleteComment(commentID)
      
      displayModalconfirmationDelete()
-     setcommentPosted(!newCommentSearch)
+     setCommentPosted(!newCommentSearch)
 
    }
 

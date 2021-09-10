@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { postComment } from "../../API/postComment"
 import { useStorage } from "../../context/useStorage"
 import { updateComment } from "../../API/updateComment"
+import { getCommentsByArticle } from "../../API/getCommentsByArticles"
+
 
 const CommentDiv = styled.div`
 width: 90%;
@@ -152,9 +154,9 @@ const LittleModal = styled.nav`
    }
 
 
-  const CommentWriteTextAreaUpdateComment = ({cancelEditComment,comment}) => {
+  const CommentWriteTextAreaUpdateComment = ({cancelEditComment,comment,setCommentPosted,newCommentSearch}) => {
       const [value,setValue] =useState(comment.content)   
-      const { newCommentSearch, setcommentPosted} = useStorage()
+   
       let select = document.getElementById('formUpdate') 
       
       const handleInputChange = ({target}) => {
@@ -168,7 +170,7 @@ const LittleModal = styled.nav`
        console.log('hola amigo');
 
 
-       res && setcommentPosted(!newCommentSearch)
+       res && setCommentPosted(!newCommentSearch)
        res && cancelEditComment() //close the commmentTexarea
        
     }
@@ -204,9 +206,11 @@ const LittleModal = styled.nav`
 
 
 export const CommentScreen = ({article}) => {
-     const { comments, setComments, newCommentSearch, setcommentPosted } = useStorage()
+    const [newCommentSearch,setCommentPosted] = useState(false)
+    const [comments, setComments] = useState(false)
+    // const { newCommentSearch, setcommentPosted } = useStorage()
      let select = document.getElementById('form')
-
+     console.log(comments);
 
     //console.log(select);
       const { 
@@ -234,9 +238,11 @@ export const CommentScreen = ({article}) => {
        
          
       },[displayed]) 
-    
-      useEffect(()=>{
-       setComments(article._id)
+   
+      useEffect(async()=>{
+        const res = await getCommentsByArticle(article._id)
+        
+       setComments(res)
        
        },[newCommentSearch])
     
@@ -247,7 +253,7 @@ export const CommentScreen = ({article}) => {
         await postComment(article,select)
          e.target.reset()
        
-        setcommentPosted(!newCommentSearch)
+        setCommentPosted(!newCommentSearch)
         console.log(newCommentSearch);
      }
 
@@ -272,7 +278,7 @@ export const CommentScreen = ({article}) => {
                    
                     
                    { comment._id !== editComment && <CommentInfo comment = { comment } i = { i } displayModal = { displayModal } />} 
-                   { comment._id === editComment && <CommentWriteTextAreaUpdateComment   cancelEditComment={cancelEditComment} comment={comment}/>}
+                   { comment._id === editComment && <CommentWriteTextAreaUpdateComment newCommentSearch={newCommentSearch} setCommentPosted={setCommentPosted}   cancelEditComment={cancelEditComment} comment={comment}/>}
                        
                       
                       
@@ -292,7 +298,7 @@ export const CommentScreen = ({article}) => {
          
    
            {
-             modalConfirmationDelete && <ModalConfirmationDelete displayModalconfirmationDelete = {displayModalconfirmationDelete} commentID = {deleteComment}/>
+             modalConfirmationDelete && <ModalConfirmationDelete newCommentSearch={newCommentSearch} setCommentPosted={setCommentPosted }  displayModalconfirmationDelete = {displayModalconfirmationDelete} commentID = {deleteComment}/>
            }
            
          </CommentsScreen>

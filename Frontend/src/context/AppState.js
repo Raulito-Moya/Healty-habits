@@ -15,8 +15,7 @@ export const AppState = (props) => {
     errorLogin: false,
     diferentPassword: false,
     articles: [],
-    comments: [],
-    newCommentSearch: false,
+   
     token: null,
  
   }
@@ -75,25 +74,7 @@ export const AppState = (props) => {
 
    }
    
-   //comments
-  const setComments = async(IDArticle) => {
-     console.log(IDArticle);
-    const res = await getCommentsByArticle(IDArticle)
-    console.log(res);
-    dispatch({
-       type:SET_COMMENTS,
-       payload:res
-    })
-
-  }
-
- const setcommentPosted = (boolean) => {
-  
-   dispatch({
-      type:NEW_COMMENT,
-      payload:boolean
-   })
- }
+ 
  
 
  return(
@@ -110,10 +91,7 @@ export const AppState = (props) => {
         setDiferentPassword,
         articlesStorage: state.articles,
         setArticles,
-        comments: state.comments,
-        setComments,
-        newCommentSearch: state.newCommentSearch,
-        setcommentPosted,
+       
        
 
      

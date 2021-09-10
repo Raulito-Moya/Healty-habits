@@ -48,13 +48,13 @@ const Articles = () => {
      <ArticlesRun >
    
      { 
-      articlesStorage ?(
+      articlesStorage.length > 0 ?(
 
           articlesStorage.map(( article ) => (
           <ArticleSingle  key={article.id} article={article}/>
           
          ))
-        ) : <p>  error, no articles found</p>
+        ) : <p>   no articles yet</p>
        }
 
      </ArticlesRun>
