@@ -94,7 +94,7 @@ const sendConfirmationEmail = async(req,res) => {
    if(!user) return res.status(404).json({message:"User not faund"} )
   
  
-   res.redirect(`http://localhost:3000/#/`)
+   res.redirect(`http://localhost:7000/#/`)
   
   }catch(err){
   
@@ -108,13 +108,13 @@ const sendConfirmationEmail = async(req,res) => {
 const setResetPaswordEmail = async(req,res) => {
     
     try {
-         const {email} = req.body
-    
-     const url = 'http://localhost:3000/#/forgotpassword/form'
-
-    await sendResetPasswordEmailFunction(url,email)
+      const {email} = req.body
+     
+      const url = 'http://localhost:7000/#/forgotpassword/form'
+ 
+      await sendResetPasswordEmailFunction(url,email)
    
-     res.json({msg:'Email for get new password  have been sended',redirect:'/forgotpassword/confirmemail'})
+      res.json({msg:'Email for get new password  have been sended',redirect:'/forgotpassword/confirmemail'})
       
     } catch (error) {
         console.log(error);
@@ -131,19 +131,20 @@ const resetPassword = async(req,res) => {
   
 try {
   
-    const token = req.params.token 
-    const { password,confirmPassword } = req.body
+  //  const token = req.params.token 
+    const { password,confirmPassword,user_email } = req.body
     
     if(password !== confirmPassword) return res.json({error:'Password are not similar'})
   
-    const decoded = jwt.verify(token, process.env.JWT_USER_CONFIRMATION)
+   // const decoded = jwt.verify(token, process.env.JWT_USER_CONFIRMATION)
      
-    const id = decoded.id
+   // const id = decoded.id
       
     const salt = bcryptjs.genSaltSync()
     const passwordCrypt = bcryptjs.hashSync( password, salt )
 
-    const userFound = await User.findByIdAndUpdate(id,{password:passwordCrypt}) 
+    const userFound = await User.findOneAndUpdate({email:user_email},{password:passwordCrypt}) 
+   
    
 
   res.json({msg:'Your new password is ready',redirect:'/forgotpassword/confirmation'})

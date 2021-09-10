@@ -19,7 +19,7 @@ export const useArtcicle = (articlesStorage) => {
     const addLike = async(article) => {
      
       const json = await postAddLike(article)
-       console.log(json);
+  
        
          if(json?.rest){
           setLikes(likes - 1)

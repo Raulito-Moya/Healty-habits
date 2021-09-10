@@ -9,6 +9,6 @@ router.post('/login', [checkIsValidUser] ,loginUser)
 router.post('/confirmation', [validateToken] ,sendConfirmationEmail)
 router.get('/validation/:id', [validateId] ,validateEmail)
 router.post('/emailresetpassword',setResetPaswordEmail)
-router.post('/resetpassword/:token',resetPassword)
+router.post('/resetpassword',resetPassword)
 
 module.exports = router

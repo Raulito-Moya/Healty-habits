@@ -15,7 +15,7 @@ import { useComment } from "../../Hooks/useComment"
     justify-content: space-between;
     
      
-    background-color: red;
+    background-color: grey;
     border-radius: 30px;
     padding: 1.4em;
     width: 6.1em;

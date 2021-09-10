@@ -27,7 +27,7 @@ const Articles = () => {
 
   
    const {articlesStorage, setArticles} = useStorage()
-   console.log(articlesStorage);
+   
    
    useEffect(()=>{
    setArticles()
@@ -39,7 +39,7 @@ const Articles = () => {
   const {isLoading, setisLoading} = useStorage() 
   
   const elementref =  useRef()
-   console.log(isLoading);
+  
  
    
   

@@ -109,7 +109,7 @@ const CommentButtomSend = styled.button`
    background-image: ${`url(${send})`};
    background-repeat: no-repeat;
    background-color: white;
-   width: 5%;
+   width: 30px;
    border: 1px solid;
    border-left: none;
    border-radius: 10px;
@@ -119,18 +119,7 @@ const CommentButtomSend = styled.button`
    }
    
 `
-const LittleModal = styled.nav`
-  background-color: aqua;
-  border-radius: 10px;
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  z-index: 5;
-  top:${(props => `${props.positionNumber}px`)};
-  right: 0;
-  
 
-`
 
 
 
@@ -162,7 +151,7 @@ const LittleModal = styled.nav`
       const handleInputChange = ({target}) => {
          
         setValue( target.value )
-        console.log(value.length);
+    
       }
  
     const onSubmit = async() => {
@@ -206,6 +195,7 @@ const LittleModal = styled.nav`
 
 
 export const CommentScreen = ({article}) => {
+    const isLoaged = localStorage.getItem('userToken')
     const [newCommentSearch,setCommentPosted] = useState(false)
     const [comments, setComments] = useState(false)
     // const { newCommentSearch, setcommentPosted } = useStorage()
@@ -294,7 +284,7 @@ export const CommentScreen = ({article}) => {
               }
            </CommentsDisplay>
            
-            <CommentWriteTextArea register={register} onSubmit={onSubmit} handleSubmit={handleSubmit}/>
+          {isLoaged &&  <CommentWriteTextArea register={register} onSubmit={onSubmit} handleSubmit={handleSubmit}/>} 
          
    
            {
