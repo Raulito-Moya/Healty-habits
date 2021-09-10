@@ -8,19 +8,18 @@ export const ModalConfirmations = () => {
  
 
   const Page = styled.section`
-    margin-top: 0px;
    
+     
     display:flex;
+    position: fixed;
     justify-content:center;
     align-items:center;
     background-color: grey;
-    padding: 10px;
-    margin-top: ${props => (props.state === true ? '78px' : '0px')};
-    transition-property: margin-top;
-    transition-duration: 2s;
-    transition-timing-function: ease;
-    transition-delay: 0;
+    padding: 5px;
+    top: ${props => (props.state === true ? '80px' : '0px')};
+    transition: all 1.5s ease;
     
+    z-index: 100;
     `
 
    const MessageCard = styled.article`
@@ -32,12 +31,7 @@ export const ModalConfirmations = () => {
    
    `
  
-      // setState(true)
-  
- /*setTimeout(() => {
-    setState(true)   
- }, 3000);
-  clearTimeout(6000)*/
+   
 
   const [state,setState] = useState(true)
 
@@ -52,7 +46,7 @@ export const ModalConfirmations = () => {
        <>
         <MessageCard >
          Login your account for can post your article in the blog
-        
+         <button type="click" onClick={()=>setState(false)}>off</button>
         </MessageCard>
        
         </>)
@@ -62,10 +56,11 @@ export const ModalConfirmations = () => {
         <MessageCard >
          <p>  Now You  can post your article in the blog</p>
          <Link to="/articles/createarticle" onClick={()=>setState(false)}> create article</Link>
+         <button type="click" onClick={()=>setState(false)}>off</button>
         </MessageCard>)
       }
 
-     <button type="click" onClick={()=>setState(false)}>off</button>
+     
    </Page>
  )
 

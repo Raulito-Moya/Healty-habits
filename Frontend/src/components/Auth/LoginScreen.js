@@ -51,17 +51,17 @@ export const LoginScreen = ({ history }) => {
   return (
     
     <SignForm  onSubmit={handleSubmit(onSubmit) } errors={errors}>
-     <BackBottom
-     type='button'
-        onClick={() => {
-          history.push('/');
-        }}
-      >
-        Back
-      </BackBottom>
-      <SignImg src={hoja} />
-      <SignInputEmail name="email" register={register} errors={errors}/>
-       <SignInputPassword name="email" register={register} errors={errors}/>
+      <BackBottom
+      type='button'
+         onClick={() => {
+           history.push('/');
+         }}
+       >
+         Back
+       </BackBottom>
+       <SignImg src={hoja} />
+       <SignInputEmail name="email" register={register} errors={errors}/>
+       <SignInputPassword name="email"  register={register} errors={errors}/>
        <ChangeSignWay to="/forgotpassword">Forgot your password</ChangeSignWay >
        <button type="submit">enviar</button>
       <ChangeSignWay to="/signup">Do you need an acount?</ChangeSignWay>

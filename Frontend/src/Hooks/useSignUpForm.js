@@ -16,13 +16,15 @@ import { useStorage } from "../context/useStorage";
         e.preventDefault()
         console.log(data);
         //console.log('me estoy llamado')
-        const res =   await createUser(data)
-        console.log(res);
+        const res =  await createUser(data)
+       
+         
+
         const {token, redirect, name, writerid} = res
         console.log(res.error);
-         if(res.error){ return setLoginError(res.error)}
-        
-           const confirm = await postConfirmationMail(token)
+         if(res.error){ return setLoginError(res.error)}else{
+
+          const confirm = await postConfirmationMail(token)
 
           confirm && localStorage.setItem('userToken',token )
           confirm && localStorage.setItem('userName',name )
@@ -32,8 +34,13 @@ import { useStorage } from "../context/useStorage";
 
            setTimeout(() => {
               history.push(redirect)
-           }, 1000);
+           }, 500);
        
+
+
+         }
+        
+        
 
       
       };

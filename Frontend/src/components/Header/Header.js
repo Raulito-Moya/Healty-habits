@@ -53,7 +53,8 @@ const NavWrapper = styled.nav`
 
   display: flex;
   width: 100%;
-  height: 70%;
+  height: 80%;
+  align-items: flex-start;
   align-items: center;
   z-index:999;
   background-color: aliceblue;
@@ -98,7 +99,7 @@ const ListNav = styled.div`
   width: 40vh;
   height: 100%;
   margin-top: 200px;
- 
+
   flex-flow: column;
   align-items:center;
   justify-content:flex-start;

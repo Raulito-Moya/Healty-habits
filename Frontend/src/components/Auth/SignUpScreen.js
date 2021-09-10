@@ -84,6 +84,7 @@ export const SignInput = styled.input`
 
 export const ChangeSignWay = styled(Link)`
   font-size: 1.3em;
+  padding: 15px;
 `;
 
  export const BackBottom = styled.button`
@@ -105,9 +106,9 @@ const SignInputName = ({register,errors}) => {
   return(
     <Fragment>
        <SignLabel>Nombre:</SignLabel>
-        <SignInput name='name'    {...register('name',{ 
+        <SignInput name='name' autoComplete="off"    {...register('name',{ 
                                    required:true, 
-                                   pattern:{  value:/^[A-Za-zñÑáÁéÉíÍóÓúÚÜü]+$/,message:"*Email no valid"}
+                                   pattern:{  value:/^[A-Za-zñÑáÁéÉíÍóÓúÚÜü]+$/,message:"*Name no valid"}
                                    })} />
       {errors.name && <ErrorMessage>Pease type a correct name</ErrorMessage>}  
     </Fragment>
@@ -121,7 +122,7 @@ const SignInputName = ({register,errors}) => {
   return(
     <Fragment>
        <SignLabel>email:</SignLabel>
-        <SignInput name='email'    {...register('email',{ 
+        <SignInput name='email' autoComplete="off"    {...register('email',{ 
                                    required:true, 
                                    pattern:{  value:/^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/,message:"*Email no valid"}
                                    })} />
@@ -137,10 +138,10 @@ export const SignInputPassword = ({register,errors}) => {
   return(
     <Fragment>
        <SignLabel>password:</SignLabel>
-        <SignInput name='password'    {...register('password',{ 
+        <SignInput name='password' type="password"  autoComplete="off"   {...register('password',{ 
                                    required:true, 
                                    minLength: {
-                                    value: 5,message:"*Email no valid"
+                                    value: 5,message:"*Password no valid"
                                   }
                                    })} />
       {errors.password && <ErrorMessage>Pease type a correct password</ErrorMessage>}  
@@ -154,7 +155,7 @@ export const SignInputConfirmPassword = ({register,errors}) => {
   return(
     <Fragment>
        <SignLabel>Confirm password:</SignLabel>
-        <SignInput name='confirmPassword'    {...register('confirmPassword',{ 
+        <SignInput name='confirmPassword' type="password"  autoComplete="off"    {...register('confirmPassword',{ 
                                    required:true, 
                                     minLength: {
                                     value: 5,message:"*Email no valid"}
