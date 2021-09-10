@@ -1,6 +1,4 @@
 import { useState } from "react"
-import { useForm } from "react-hook-form";
-import { postComment } from "../API/postComment";
 
 
  export const useComment = ({select}) => {

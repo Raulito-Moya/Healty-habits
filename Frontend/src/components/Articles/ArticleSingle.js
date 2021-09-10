@@ -173,7 +173,7 @@ const LikesText = styled.p`
      
      const likesFound = await getLikesByArticles(article)
      setLikes(likesFound)
-     console.log(likesFound);
+   
 
    },[likes])
 
@@ -203,7 +203,7 @@ const LikesText = styled.p`
        <ArticleAuthor> Por {article.author} </ArticleAuthor>
        
          <LikeDiv>
-           <LikeButton type='button' onClick={() => { userToken && addLike(article)}} /> 
+           <LikeButton type='button' onClick={() => { userToken ?  addLike(article) : alert('please register your account for give us a like')}} /> 
            <Likes likes={Likes}> {likes} </Likes >
          <LikesText> {thanks} </LikesText>
          </LikeDiv>

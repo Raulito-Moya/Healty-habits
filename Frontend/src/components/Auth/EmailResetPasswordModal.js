@@ -28,7 +28,7 @@ export const MessageCard = styled.article`
  return(
    <Page>
      <MessageCard>
-         <h4>Wh have sended you a confirmation email to this email for reset your password </h4>
+         <h4>We have sended you a confirmation email to this email for reset your password </h4>
      </MessageCard>
 
    </Page>

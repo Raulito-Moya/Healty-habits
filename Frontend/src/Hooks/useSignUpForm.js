@@ -14,14 +14,14 @@ import { useStorage } from "../context/useStorage";
 
       const onSubmit = async(data,e) => {
         e.preventDefault()
-        console.log(data);
+        
         //console.log('me estoy llamado')
         const res =  await createUser(data)
        
          
 
         const {token, redirect, name, writerid} = res
-        console.log(res.error);
+       
          if(res.error){ return setLoginError(res.error)}else{
 
           const confirm = await postConfirmationMail(token)

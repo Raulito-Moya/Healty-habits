@@ -13,6 +13,8 @@ export const sendEmailresetPassword = async(data) => {
         headers:headers,
         body: JSON.stringify({email:email}) 
       }
+    
+       localStorage.setItem('user_email',email)
 
     try {
       

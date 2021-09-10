@@ -19,7 +19,7 @@ import { useStorage } from "../context/useStorage";
 
          const res = await loginUser(data)
          const {name, email, redirect, token,writerid} = res
-           console.log(res);
+         
 
          if(res.error){
           setisLoading(false)

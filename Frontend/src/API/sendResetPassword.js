@@ -6,9 +6,13 @@ export const sendresetPassword = async(data) => {
     const headers = new Headers();
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json')
-     console.log(data);
     
      
+    
+     const user_email = localStorage.getItem('user_email')
+     data["user_email"] = user_email
+     console.log(data);
+
      const setting = {
         method: 'POST',
         headers:headers,
@@ -17,7 +21,7 @@ export const sendresetPassword = async(data) => {
 
     try {
       
-        let res = await fetch(`/api/auth/resetpassword/${token}`, setting);
+        let res = await fetch(`/api/auth/resetpassword`, setting);
         let json = await res.json()
         return json
       } catch (error) {
