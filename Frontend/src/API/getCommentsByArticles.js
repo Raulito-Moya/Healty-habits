@@ -25,7 +25,7 @@ import { useStorage } from "../context/useStorage";
       
         let res = await fetch(`/api/comments/getcomments/${id}`, setting);
         let json = await res.json();
-        console.log(json);
+        //console.log(json);
         return json
         
       } catch (error) {

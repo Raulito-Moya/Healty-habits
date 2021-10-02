@@ -63,7 +63,7 @@ export const ModalConfirmations = () => {
   const [state,setState] = useState(true)
 
  let isLoged = localStorage.getItem('userToken')
- console.log(isLoged);
+ //console.log(isLoged);
 
 
  return(

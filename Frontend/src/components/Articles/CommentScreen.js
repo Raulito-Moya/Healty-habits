@@ -159,7 +159,7 @@ const CommentButtomSend = styled.button`
  
     const onSubmit = async() => {
        const res = await updateComment(value,comment._id,select)
-       console.log('hola amigo');
+      
 
 
        res && setCommentPosted(!newCommentSearch)
@@ -187,7 +187,7 @@ const CommentButtomSend = styled.button`
 
    return(
      <>
-        <span>By {comment.author}</span>
+        <span>By <b>{comment.author}: </b></span>
         <p>{comment.content}</p>
         
        {comment.writerid === userwriterid && (<button type="click" id='diplayModal' onClick={()=>{displayModal(i,comment._id)} }/>) }  
@@ -203,7 +203,7 @@ export const CommentScreen = ({article}) => {
     const [comments, setComments] = useState(false)
     // const { newCommentSearch, setcommentPosted } = useStorage()
      let select = document.getElementById('form')
-     console.log(comments);
+     //console.log(comments);
 
     //console.log(select);
       const { 
@@ -241,13 +241,13 @@ export const CommentScreen = ({article}) => {
     
 
      const onSubmit = async(data,e) => {
-        console.log(data);
+       // console.log(data);
       
         await postComment(article,select)
          e.target.reset()
        
         setCommentPosted(!newCommentSearch)
-        console.log(newCommentSearch);
+       // console.log(newCommentSearch);
      }
 
 

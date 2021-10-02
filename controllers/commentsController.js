@@ -12,7 +12,7 @@ const getCommentsbyArticle = async(req = request,res = response) => {
 
       const Commentsfound = await Comment.find({_id: { $in: articlefinded.comments }});
      
-     console.log(Commentsfound);
+    // console.log(Commentsfound);
 
       if(Commentsfound){
         res.json(Commentsfound)
