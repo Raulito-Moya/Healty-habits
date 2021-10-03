@@ -22,7 +22,7 @@ export const postAddLike = async(article) => {
 
     try {
       
-       let res = await fetch(`/api/likes/addlike/${token}`, setting);
+       let res = await fetch(`api/likes/addlike/${token}`, setting);
        let json = await res.json()
        return json
        
