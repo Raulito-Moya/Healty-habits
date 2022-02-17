@@ -48,7 +48,7 @@ const Articles = () => {
      <ArticlesRun >
    
      { 
-      articlesStorage.length > 0 ?(
+      articlesStorage.length > 0 ? (
 
           articlesStorage.map(( article ) => (
           <ArticleSingle  key={article.id} article={article}/>

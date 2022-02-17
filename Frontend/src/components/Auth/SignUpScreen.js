@@ -18,11 +18,11 @@ const SignUpForm = styled.form`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 200px;
+  margin-top: 50px;
   background-color: aquamarine;
   border-radius: 10px;
   width: 50vw;
-  height: 500px;
+  height: auto;
 
   @media screen and (max-width: 650px) {
     width: 100%;
@@ -91,11 +91,33 @@ export const ChangeSignWay = styled(Link)`
     position: absolute;
     top: 7px;
     left: 2px;
+   
+    border:none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
   
 
 `
 
+export const SignButtom = styled.button`
+   
+    border:none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    &:hover{
+      background-color:'aquamarine';
+    }
 
+
+`
 
 
 
@@ -198,7 +220,7 @@ export  const SignUpScreen = ({history}) => {
          <SignInputEmail register={register} errors={errors}/>
          <SignInputPassword register={register} errors={errors}/>
           <SignInputConfirmPassword register={register} errors={errors}/>
-        <button type="submit" >enviar</button>
+        <SignButtom type="submit" >Send</SignButtom>
        <ChangeSignWay to='/login'>Sign In</ChangeSignWay>
        {errorLogin && <h4>{errorLogin}</h4>}
     </SignUpForm >

@@ -44,7 +44,13 @@ export const ModalConfirmations = () => {
 
    const Button = styled.button`
     align-self: center;
-   
+    border:none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
    `
  
  const LinkCreateArticle = styled(Link)`

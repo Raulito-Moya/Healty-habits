@@ -18,23 +18,36 @@ width: 90%;
 display: flex;
 flex-flow: column;
 position: relative;
+padding-bottom: 2em;
 
 
 
 `
 const CommentButtom = styled.button`
+  border: none;
+  border-raduis: 50px;
+  background-color: rgb(152, 236, 159);
+  padding: 10px;
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.2em;
 
+
+  &:hover{
+  transform: scale(1.1);
+  
+
+}
 
 `
 
 const CommentsScreen = styled.div`
 background-color: grey;
 display: ${(props) => (props.displayed === true ? 'block' : 'none' )};
-
 height: ${(props) => (props.displayed === true ? 'auto' : '20px' )};
 
 transition: all 4.5s ease;
-
+border:none;
+border-radius: 5px;
 
 `
 const CommentsDisplay = styled.div`
@@ -54,6 +67,7 @@ const Comment = styled.div`
    padding: 1.5em;
    margin-top: 2.5em;
    position: relative;
+  
 
    & > button {
      width: 2.1em;
@@ -187,8 +201,8 @@ const CommentButtomSend = styled.button`
 
    return(
      <>
-        <span>By <b>{comment.author}: </b></span>
-        <p>{comment.content}</p>
+        <span >By <b style={{ color:'green'}}>{comment.author}: </b></span>
+        <p style={{ fontFamily:'Akaya Telivigala'}}>{comment.content}</p>
         
        {comment.writerid === userwriterid && (<button type="click" id='diplayModal' onClick={()=>{displayModal(i,comment._id)} }/>) }  
      </> 

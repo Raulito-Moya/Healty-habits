@@ -7,7 +7,7 @@ import hoja from "../../img/hojas.svg";
 import { ErrorMessage } from "../Articles/CreateArticle";
 import { LoaderSpinner } from "../UX/LoaderSpiner";
 
-import { BackBottom, ChangeSignWay,  SignImg, SignInput, SignInputEmail, SignInputPassword, SignLabel } from './SignUpScreen'
+import { BackBottom, ChangeSignWay,  SignImg, SignInput, SignInputEmail, SignInputPassword, SignLabel,SignButtom } from './SignUpScreen'
 
 export const SignForm = styled.form`
   display: flex;
@@ -18,11 +18,11 @@ export const SignForm = styled.form`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 200px;
+  margin-top: 50px;
   background-color: aquamarine;
   border-radius: 10px;
   width: 50vw;
-  height: 500px;
+  height: auto;
 
   @media screen and (max-width: 650px) {
     width: 100%;
@@ -63,7 +63,7 @@ export const LoginScreen = ({ history }) => {
        <SignInputEmail name="email" register={register} errors={errors}/>
        <SignInputPassword name="email"  register={register} errors={errors}/>
        <ChangeSignWay to="/forgotpassword">Forgot your password</ChangeSignWay >
-       <button type="submit">enviar</button>
+       <SignButtom  type="submit">Send</SignButtom >
       <ChangeSignWay to="/signup">Do you need an acount?</ChangeSignWay>
        {errorLogin && <ErrorMessage>{errorLogin}</ErrorMessage>}
        {isLoading && <LoaderSpinner/>}

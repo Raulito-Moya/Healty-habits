@@ -16,6 +16,8 @@ const StyledHeader = styled.header`
   height: 69px;
   top: 0;
   box-sizing: border-box;
+  border: none;
+  border-radius:10px;
   margin: 0;
   padding: 0px 10px ;
   z-index: 999;
@@ -34,8 +36,8 @@ const IconDiv = styled.div`
 `
 
 const StyledTitle = styled.h1`
-   font-family:  Tahoma, sans-serif;
-   font-size: 20px;
+   font-family: 'Indie Flower', cursive;
+   font-size: 2.3em;
 `
 const IconImg = styled.img`
   width: 60px;
@@ -64,10 +66,17 @@ const NavWrapper = styled.nav`
 
   position: fixed;
   top: 75px;
-  right: ${(props) => (props.navisOpen === true ? "-80vw" : "-100vw")} ;
+  right: ${(props) => (props.navisOpen === true ? "-70vw" : "-100vw")} ;
   
+   
+  @media screen and (max-width: 1600px){
+    right: ${(props) => (props.navisOpen === true ? "-70vw" : "-100vw")};
+   
+   }
+
+
    @media screen and (max-width: 999px){
-    right: ${(props) => (props.navisOpen === true ? "-60vw" : "-100vw")};
+    right: ${(props) => (props.navisOpen === true ? "-20vw" : "-100vw")};
    
    }
 

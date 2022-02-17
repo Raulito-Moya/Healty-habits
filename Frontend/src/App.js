@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect } from 'react'
 import { Route,
         HashRouter as Router, Switch, useLocation } from 'react-router-dom'
-import {ThemeProvider} from 'styled-components'
+import {createGlobalStyle, ThemeProvider} from 'styled-components'
 import styled from "styled-components"
 import Header from './components/Header/Header'
 import Articles from './components/Articles/Articles'
@@ -21,7 +21,13 @@ import { ModalConfirmations } from './components/UX/ModalConfirmations'
 import { PrivateRoute } from './Routes/PrivateRoute'
 
 
-
+const GlobalStyle = createGlobalStyle`
+  body {
+ 
+      font-family: 'Indie Flower', cursive;
+      letter-spacing: 4px;
+  }
+`;
 
 
 const App = ()=>{
@@ -38,7 +44,7 @@ let isLoged = localStorage.getItem('userToken')
 let url = window.location.hash
  useEffect(()=> {
   url = window.location.hash
-console.log(url)
+//console.log(url)
  },[])
 
  const {changePath} = useStorage()
@@ -73,7 +79,7 @@ return (
       {!changePath  && (
       <ModalConfirmations /> ) }
     
-
+     <GlobalStyle/>
      <ScrollToTop/>
   
      <Switch>

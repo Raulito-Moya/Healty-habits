@@ -14,7 +14,7 @@ import { ModalEditComment } from '../UX/ModalConfirmationDelete';
 const ArticleViewPreview = styled.div`
   align-items: center;
  
-   border: 1px solid #1111;
+   
    display: flex;
    flex-flow: column;
    margin-top: 80px;
@@ -29,7 +29,7 @@ const ArticleViewPreview = styled.div`
 
 const ArticleView = styled.div`
   align-items: center;
- 
+  box-shadow: 5px 5px 20px rgb(146, 146, 145);
   display: flex;
   flex-flow: column;
  
@@ -37,7 +37,7 @@ const ArticleView = styled.div`
 `
 
 const ArticleTitle = styled.h1`
-   font-family: Calibri, Cochin, Georgia, Times, 'Times New Roman', serif;
+   font-family: 'Indie Flower', cursive;
    width: 100%;
    text-align: center;
    font-size: 3.1em;
@@ -49,6 +49,8 @@ const ArticleTitle = styled.h1`
 `
 
 const ArticleImg = styled.img`
+  border-radius: 30px;
+  
   width: 80%;
   padding: 1.2em;
   
@@ -80,12 +82,12 @@ const Tag = styled.a`
 
 const Articledescription = styled.p`
   color: black;
+  font-family: 'Indie Flower', cursive;
   
-  font-family: Verona, Geneva, Tahoma, sans-serif;
   font-size: 1.7em;
    
-  letter-spacing: 1px;
-  
+ 
+  letter-spacing: 4px;
   
   width: 95%;
   
@@ -100,6 +102,7 @@ const LikeDiv = styled.div`
    display: flex;
    flex-flow: row;
    justify-content: space-between;
+  
   
 ` 
 
@@ -119,6 +122,7 @@ const LikeButton = styled.button`
 `
 
 const Likes = styled.span`
+  font-family: sans-serif, cursive;
   align-self: flex-start;
   margin-left: -21px;
   margin-top: 20px;
@@ -135,7 +139,7 @@ const Likes = styled.span`
 const LikesText = styled.p`
  margin-left: 20px;
  font-size: 1.2em;
- font-family: 'Lucida Sans Unicode', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ font-family: 'Akaya Telivigala',sans-serif;
 
 `
 
