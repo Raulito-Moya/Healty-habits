@@ -1,0 +1,36 @@
+.commentsdisplay{
+  
+    opacity: 3.0;
+    padding-left: 2.1em;
+    padding-top: 2.1em;
+    padding-bottom: 1.9em;
+    padding-right: 2.1em;
+    background-color: azure;
+    position: relative;
+  
+    max-height:  500px; 
+   transition: max-height 2.5s ease;
+   /* background-color: rgb(184, 44, 44);
+    
+    border:none;
+    border-radius: 5px;*/
+}
+
+
+.commentsdisplayClose{
+    opacity: 0;
+    padding-left: 2.1em;
+    padding-top: 2.1em;
+    padding-bottom: 1.9em;
+    padding-right: 2.1em;
+    background-color: azure;
+    position: relative;
+   
+ 
+     max-height:  0px;
+    
+   
+    border:none;
+    border-radius: 5px;
+    transition: all 1.5s ease;
+}

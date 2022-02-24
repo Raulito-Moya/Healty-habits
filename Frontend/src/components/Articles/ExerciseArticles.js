@@ -10,7 +10,7 @@ import { ArticleSingle } from "./ArticleSingle";
 export const BackLinkbuttom = styled(Link)`
   position: fixed;
   
-  width: 50px;
+  width: 80px;
   height: 40px;
   top: 70px;
   margin: 0;
@@ -23,7 +23,7 @@ export const BackLinkbuttom = styled(Link)`
 
   transform: translate(86px);
   transition: all 2.5s ease;
-  
+  z-index: 900;
 `;
 
 const ExercisesArticles = () => {
@@ -47,7 +47,7 @@ const { getExercisesArticles } =  useArtcicle(articlesStorage);
 
   return (
     <div>
-      <BackLinkbuttom to="/">Atras</BackLinkbuttom>
+      <BackLinkbuttom to="/">Back</BackLinkbuttom>
 
       <ArticlesRun>
         { articles ? (

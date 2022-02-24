@@ -10,7 +10,7 @@ import { postComment } from "../../API/postComment"
 import { useStorage } from "../../context/useStorage"
 import { updateComment } from "../../API/updateComment"
 import { getCommentsByArticle } from "../../API/getCommentsByArticles"
-
+import './comments.css'
 
 const CommentDiv = styled.div`
 width: 90%;
@@ -42,21 +42,32 @@ const CommentButtom = styled.button`
 
 const CommentsScreen = styled.div`
 background-color: grey;
-display: ${(props) => (props.displayed === true ? 'block' : 'none' )};
+
 height: ${(props) => (props.displayed === true ? 'auto' : '20px' )};
 
 transition: all 4.5s ease;
 border:none;
 border-radius: 5px;
 
+opacity: ${(props) => (props.displayed === true ? 2.0 : 0 )};
+    visibility: ${(props) => (props.displayed === true ? 'visible' : 'hidden' )};
+   transition: all 2.5s ease;
+
 `
 const CommentsDisplay = styled.div`
+
    padding-left: 2.1em;
    padding-top: 2.1em;
    padding-bottom: 1.9em;
    padding-right: 2.1em;
    background-color: azure;
    position: relative;
+  
+   height: auto;
+  
+   
+
+   /*display:  ${(props) => (props.displayed === true ? 'block' : 'none' )};;*/
 `
 
 const Comment = styled.div`
@@ -264,22 +275,23 @@ export const CommentScreen = ({article}) => {
        // console.log(newCommentSearch);
      }
 
-
+console.log(displayed);
 
   return(
   
      <CommentDiv >
        
          <CommentButtom  onClick={diplayCommentScreen}>comment</CommentButtom>
-        {
+         
+       
    
-          displayed  && 
-         (
-   
-         <CommentsScreen displayed={displayed} >
+         <CommentsScreen displayed={displayed}>
            <CommentsDisplay >
+      
+      
              {
-              comments ? comments.map( (comment, i) => (
+
+              comments.length >= 1  ? comments.map( (comment, i) => (
                    
                  <Comment key={i} id={i} >
                    
@@ -299,20 +311,24 @@ export const CommentScreen = ({article}) => {
               {
                   modal && ( <ModalSelectAction positionNumber = { positionNumber }  displayModalconfirmationDelete = {displayModalconfirmationDelete} displayEditComment = {displayEditComment}/> )
               }
-           </CommentsDisplay>
+
+
+           </CommentsDisplay >
            
-          {isLoaged &&  <CommentWriteTextArea register={register} onSubmit={onSubmit} handleSubmit={handleSubmit}/>} 
+           {isLoaged &&  <CommentWriteTextArea register={register} onSubmit={onSubmit} handleSubmit={handleSubmit}/>} 
          
    
            {
-             modalConfirmationDelete && <ModalConfirmationDelete newCommentSearch={newCommentSearch} setCommentPosted={setCommentPosted }  displayModalconfirmationDelete = {displayModalconfirmationDelete} commentID = {deleteComment}/>
+             modalConfirmationDelete && <ModalConfirmationDelete newCommentSearch={newCommentSearch} 
+                                                                 setCommentPosted={setCommentPosted }  
+                                                                 displayModalconfirmationDelete = {displayModalconfirmationDelete} 
+                                                                 commentID = {deleteComment}
+                                          />
            }
            
          </CommentsScreen>
           
-         )
        
-       }
       
      </CommentDiv>
    

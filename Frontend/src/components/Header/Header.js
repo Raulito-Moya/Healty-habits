@@ -18,7 +18,7 @@ const StyledHeader = styled.header`
   box-sizing: border-box;
   border: none;
   border-radius:10px;
-  margin: 0;
+  margin-left: -10px;
   padding: 0px 10px ;
   z-index: 999;
   background-color: ${props => props.theme.lightGreen};
@@ -37,7 +37,9 @@ const IconDiv = styled.div`
 
 const StyledTitle = styled.h1`
    font-family: 'Indie Flower', cursive;
-   font-size: 2.3em;
+   font-size: 1.5em;
+   padding-top: 10px;
+   padding-left:10px ;
 `
 const IconImg = styled.img`
   width: 60px;
@@ -52,7 +54,7 @@ transition:all 0.3s ease;
 
 
 const NavWrapper = styled.nav`
-
+ 
   display: flex;
   width: 100%;
   height: 80%;
@@ -81,8 +83,8 @@ const NavWrapper = styled.nav`
    }
 
    @media screen and (max-width: 500px){
-    right: ${(props) => (props.navisOpen === true ? "-20vw" : "-100vw")};
-    transition: all 0.5s ease;
+    right: ${(props) => (props.navisOpen === true ? "-20vw" : "-120vw")};
+    transition: all 1.5s ease;
    }
    transition: right 1.5s ease;
 `
@@ -106,8 +108,7 @@ const OpenModalButtom = styled.button`
 const ListNav = styled.div`
   display: flex;
   width: 40vh;
-  height: 100%;
-  margin-top: 200px;
+  height: auto;
 
   flex-flow: column;
   align-items:center;

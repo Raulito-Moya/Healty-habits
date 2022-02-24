@@ -53,7 +53,7 @@ export const ModalConfirmationDelete = ({displayModalconfirmationDelete,commentI
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      
+      gap: 1em;
       width: 4.1em;
      }
 
@@ -61,6 +61,8 @@ export const ModalConfirmationDelete = ({displayModalconfirmationDelete,commentI
      & > .edit{
         display: inline-flex;
         padding: 2.0em;
+
+       
 
        
      } 

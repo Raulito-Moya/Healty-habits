@@ -64,8 +64,9 @@ return (
    lightTextShadow:'-1px 1px 1px #000',
    lightBoxShadow:'1px 1px 5px #00000057',
    darckBoxShadow:'2px 4px 14px 6px rgb(23 23 23 / 36%);',
-   fontTextColor:'rgba(211, 211, 211, 0.829)'
-   
+   fontTextColor:'rgba(211, 211, 211, 0.829)',
+   up: '90px',
+   down: '-90px'
   }
 
 }>

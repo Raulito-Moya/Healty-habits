@@ -12,9 +12,8 @@ import { ModalEditComment } from '../UX/ModalConfirmationDelete';
 
 
 const ArticleViewPreview = styled.div`
-  align-items: center;
+   align-items: center;
  
-   
    display: flex;
    flex-flow: column;
    margin-top: 80px;
@@ -23,17 +22,20 @@ const ArticleViewPreview = styled.div`
    @media screen and (max-width:500px){
     width: 100%;
    }  
+  
+  
 
 `
 
 
 const ArticleView = styled.div`
+
   align-items: center;
   box-shadow: 5px 5px 20px rgb(146, 146, 145);
   display: flex;
   flex-flow: column;
- 
-  
+  border-radius: 25px;
+   
 `
 
 const ArticleTitle = styled.h1`
@@ -64,6 +66,11 @@ const ArticleAuthor = styled.span`
   
   align-self: flex-end;
   padding: 50px;
+
+  & > strong {
+    color: green;
+    font-size: 1.5em;
+  }
 `
 const DivTags = styled.div`
   display: flex;
@@ -72,7 +79,7 @@ const DivTags = styled.div`
 `
 
 const Tag = styled.a`
- color: black;
+ color: green;
  
  font-size: 1.9em;
  
@@ -204,7 +211,7 @@ const LikesText = styled.p`
           
        </DivTags>
        <Articledescription>{article.content}</Articledescription>
-       <ArticleAuthor> Por {article.author} </ArticleAuthor>
+       <ArticleAuthor> By <strong>{article.author}</strong> </ArticleAuthor>
        
          <LikeDiv>
            <LikeButton type='button' onClick={() => { userToken ?  addLike(article) : alert('please register your account for give us a like')}} /> 
