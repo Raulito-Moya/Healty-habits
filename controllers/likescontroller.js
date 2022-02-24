@@ -1,8 +1,9 @@
 const { response, request } = require('express')
+require('dotenv').config({path: '.env'});
 const Likes  = require('../models/Likes')
 const { Article } = require('../models/Articles')
 const User = require('../models/User')
-const jwt =require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 
 const getLikes = async (req,res = response) => {
@@ -26,14 +27,15 @@ const getLikes = async (req,res = response) => {
 
 const postNewLike = async(req,res = response) => {
     try {
-      const { token } = req.params
-    
-      const decoded = jwt.verify(token, process.env.JWT_USER_CONFIRMATION)
-      
-      const userid  = decoded.id
-       console.log(userid);
-      const {article} = req.body
-     // console.log(req.body);
+    console.log('hihihihih');
+    const { token } = req.params
+    console.log(process.env.JWT_USER_CONFIRMATION);
+    const decoded = jwt.verify(token, process.env.JWT_USER_CONFIRMATION)
+  
+    const userid  = decoded.id
+     console.log(userid);
+    const {article} = req.body
+   // console.log(req.body);
    
     
       const articleFound = await Article.findById(article._id).populate({path:'likes'})
