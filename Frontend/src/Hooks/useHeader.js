@@ -5,6 +5,7 @@ export const useHeader = () => {
    const [NavisOpen, setNavisOpen] = useState(false)
    const [BottomText, setBottomText] = useState('open')
    const [GoArticles, SetGoArticles] = useState(false)
+   const [GoLogin, SetGoLogin] = useState(false)
 
    const openNav = () => {
 
@@ -14,12 +15,20 @@ export const useHeader = () => {
 
    }
 
-   const openArticles = () => {
-     
-     SetGoArticles(!GoArticles)
+   const openItem = (param) => {
+     if(param === 'article'){
+      console.log('article')
+         SetGoArticles(!GoArticles)
+     }
+
+     if(param === 'login'){
+        console.log('login')
+      SetGoLogin(!GoLogin)
+     }
+    
 
    }
 
-return{NavisOpen,openNav,BottomText, GoArticles,openArticles}
+return{NavisOpen,openNav,BottomText, GoArticles,openItem,GoLogin}
 
 }

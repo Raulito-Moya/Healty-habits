@@ -5,6 +5,10 @@ import { useHeader } from '../../Hooks/useHeader'
 import hoja from '../../img/hojas.svg'
 import open from '../../img/abierto.svg'
 import close from '../../img/cerrar.svg'
+import exercise from '../../img/exercise.png'
+import article from '../../img/article.png'
+import contact from '../../img/contact.png'
+import login from '../../img/login.png'
 import appContext from '../../context/app-context'
 import { useStorage } from '../../context/useStorage'
 
@@ -32,6 +36,7 @@ const IconDiv = styled.div`
    display: flex;
    flex-flow: row;
    justify-content: flex-start;
+ 
 
 `
 
@@ -56,37 +61,38 @@ transition:all 0.3s ease;
 const NavWrapper = styled.nav`
  
   display: flex;
-  width: 100%;
-  height: 80%;
+
+  width: 80%;
+  height: 90px;
   align-items: flex-start;
   align-items: center;
-  z-index:999;
+  z-index:800;
   background-color: aliceblue;
   border-radius: 10px;
  
   border-left: 1px solid #1111;
 
   position: fixed;
-  top: 75px;
-  right: ${(props) => (props.navisOpen === true ? "-70vw" : "-100vw")} ;
-  
+   left:4vw; 
+   top: ${(props) => (props.navisOpen === true ? "7vw" : "-70vw")} ;
    
-  @media screen and (max-width: 1600px){
+   
+  /* @media screen and (max-width: 1600px){
     right: ${(props) => (props.navisOpen === true ? "-70vw" : "-100vw")};
    
-   }
+   } */
 
 
    @media screen and (max-width: 999px){
-    right: ${(props) => (props.navisOpen === true ? "-20vw" : "-100vw")};
-   
+    top: ${(props) => (props.navisOpen === true ? "80px" : "-100px")} ;
    }
 
    @media screen and (max-width: 500px){
-    right: ${(props) => (props.navisOpen === true ? "-20vw" : "-120vw")};
+    top: ${(props) => (props.navisOpen === true ? "20vw" : "-70vw")} ;
+    
     transition: all 1.5s ease;
    }
-   transition: right 1.5s ease;
+   transition: top 1.5s ease;
 `
 
 const OpenModalButtom = styled.button`
@@ -107,19 +113,18 @@ const OpenModalButtom = styled.button`
 
 const ListNav = styled.div`
   display: flex;
-  width: 40vh;
+  flex-direction:row;
+  width: 100%;
   height: auto;
-
-  flex-flow: column;
   align-items:center;
-  justify-content:flex-start;
+  justify-content:space-between;
 `
 
  export const ListItem = styled(Link)`
   text-decoration: none;
    margin-top: 70px;
    font-size: 2em;
-  text-decoration-color: aliceblue;
+
    margin-top: 20px;
    
  
@@ -129,14 +134,24 @@ const ListNav = styled.div`
 `
 
 const SelectLinkTable = styled.ul`
-   display: ${(props) => (props.openArticle === true ? 'flex' : 'none')};
+   display: ${(props) => (props.openItem === true ? 'flex' : 'none')};
+   position:absolute ;
+   top:60px;
+   left: 15px;
+   background-color:aliceblue ;
    flex-flow: column;
-   margin-left: 35px;
+   width:auto ;
+   
    transition: all 1.5s ease;
   & > :any-link{
      margin-left: 20px;
      color: greenyellow;
   }
+`
+
+const SelectLinkTableLogin = styled(SelectLinkTable)`
+  display: ${(props) => (props.openLogin === true ? 'flex' : 'none')};
+  left: 295px;
 `
 
 
@@ -148,27 +163,31 @@ const Header = () => {
  const isLoaged = localStorage.getItem('userToken')
 
  
-const {NavisOpen,BottomText,openNav, GoArticles, openArticles} = useHeader()
+const {NavisOpen,BottomText,openNav, GoArticles, openItem,GoLogin} = useHeader()
 
 
  return(
     <StyledHeader >
       <IconDiv>
       <IconImg src={hoja}></IconImg>
-      <StyledTitle>Healty Habits</StyledTitle>
+      <StyledTitle>Synergy Habits</StyledTitle>
        
       </IconDiv>
       
      <NavWrapper navisOpen ={NavisOpen} onBlur={openNav}>
        <ListNav>
-       <ListItem  onClick={openArticles}>Articles</ListItem  >
-         <SelectLinkTable openArticle = {GoArticles} >
+       <ListItem  onClick={()=> {openItem('article')}}> <img src={exercise} alt=""/></ListItem  >
+         <SelectLinkTable openItem = {GoArticles} >
             <ListItem  to='/articles/exercises'>Exercises </ListItem  >
-            <ListItem to='/articles/healthyfood' >Healty Food </ListItem  >
+            <ListItem to='/articles/healthyfood' >Eat Well!! </ListItem  >
          </SelectLinkTable >
          <ListItem  >Features </ListItem  >
-         <ListItem  >Contact </ListItem  >
-         <ListItem to="/login" > Login & SignUp </ListItem  >
+         <ListItem  > <img src={contact} alt=""/></ListItem  >
+         <ListItem   onClick={ ()=> {openItem('login')} }> <img src={login} alt=""/></ListItem  >
+          <SelectLinkTableLogin openLogin = {GoLogin} >
+             <ListItem  to='/articles/exercises'>Login </ListItem  >
+             <ListItem to='/articles/healthyfood' >Register </ListItem  >
+          </SelectLinkTableLogin >
        {isLoaged && <ListItem to="/articles/createarticle" > Create Article </ListItem  >}  
        </ListNav>
      </NavWrapper>
