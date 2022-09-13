@@ -1,0 +1,332 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    
+    padding-bottom: 50px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul{
+  display: flex;
+  list-style-type: none;
+  
+  justify-content: space-between;
+  font-size: 30px;
+  color: white; 
+}
+nav.responsivenavdown{
+  top: 0px;
+  margin: 0 auto;
+  text-align: center;
+  transform: translateY(105px);
+  transition: transform 0.5s;
+  justify-content: center;
+  width: 100%;
+  border-top: 1px solid black;
+ 
+}
+
+
+
+li {
+  padding-left: 2.1em;
+
+  text-decoration: none;
+}
+
+li:hover{
+  color:rgb(183, 249, 121) ;
+}
+
+hr{
+ margin-top: 250px;
+}
+  #hero {
+  position: relative;
+  }
+  iframe {
+  /* optional */
+  width: 100%;
+  height: 100%;
+  }
+
+
+
+
+.presentation{
+    position: relative;
+    background-color: rgb(255, 255, 255);
+}
+
+/*navabr*/
+.navbar{
+    position:  relative;
+    background-color: aqua;
+    width: 100%;
+    
+    z-index: 1000;
+    top:-20vh;
+
+    transition: top 1.5s ease;
+    
+}
+
+.navbar-open{
+  position:  relative;
+  background-color: aqua;
+  width: 100%;
+  
+  z-index: 1000;
+  top:20vh;
+
+  transition: top 1.5s ease;
+  
+}
+
+ul li {
+  cursor: pointer;
+}
+
+
+.header{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    z-index: 999;
+    
+    justify-content: space-between;
+    width: 100%;
+}
+.iconbutton {
+  width: 50px;
+  height: 50px;
+}
+
+
+.headericon{
+    display: flex;
+    flex-direction: row;
+}
+
+.icon{
+    width: 60px;
+    transition:all 0.3s ease;
+    
+    
+}
+
+
+.menubutton{
+    width: 20px;
+    height: 20px;
+}
+.icon:hover{
+   
+        transform: scale(1.1);
+      
+      
+}
+
+video{
+    width: 100%;
+}
+
+#video{
+    width: 100%;
+    height: 100vh;
+    z-index: 998;
+    position: relative;
+}
+
+.Section{
+    margin-top: 150px;
+      
+    width: 100%;
+    height: auto;
+}
+
+.InfoCards {
+     
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    gap: 70px;
+    
+   
+   }
+
+.Card {
+    display: flex;
+    flex-direction: column;
+
+     max-width: 400px;
+     height: auto;
+    /* box-shadow: 5px 5px 20px rgb(145, 146, 145);*/
+     animation: fadeIn 3s ;
+     overflow-wrap: break-word;
+   }
+
+   .CardContent{
+    width: 400px;
+       text-align: center;
+   }
+
+
+   .cardimg {
+ 
+    
+   }
+
+     .Card img {
+       
+
+       max-width: 400px;
+       max-height: 200px;
+     }
+
+     .Card h1{
+        
+        font-size: 60px;
+        font-size: 3.75rem;
+        line-height: 80px;
+        letter-spacing: -7.2px;
+        margin: 0 0 24px;
+        text-align: center;
+     }
+
+
+
+   @keyframes fadeIn {
+
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+
+
+  /*main section3*/
+
+
+   .banner{
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    flex-wrap: no-wrap;
+    justify-content: center;
+   }
+   
+     .banner img{
+        margin-top: -20px;
+         width: 75%;
+         height: 150%;
+     }
+
+     .bannertext{
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin-top: 50px;
+
+     }
+     
+     .bannertext h1 {
+        font-size: 1.2em;
+        
+        
+       
+        text-align: center;
+     }
+
+
+   @media only screen and (max-width: 960px){ 
+     .banner{
+      
+       flex-direction: column;
+       align-items: center;
+      }
+   
+    }       
+
+/*Footer main*/    
+
+
+.Footer{
+ /* max-width: 1296px;*/
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 48px;
+  padding-right: 48px;
+  position: relative;
+}
+ 
+.footericon{
+  max-width:250px ;
+}
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+   
+    column-gap: 32px;
+  }
+
+
+  .griditem{
+    text-align: center;
+  }
+
+  .griditem ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .griditemsocial{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .sociallogo{
+    width: 45px;
+
+  }
+
+@media only screen and (max-width: 960px){ 
+  .grid{
+    display: flex;
+     flex-direction: column;
+  }
+ 
+
+  }  
+
+
+
+
+
+  
+
+
+ 
+
+
+

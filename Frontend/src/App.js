@@ -19,6 +19,7 @@ import { EmailResetPasswordModal } from './components/Auth/EmailResetPasswordMod
 import { ConfirmationPasswordaModal } from './components/Auth/ConfimationPasswordModal'
 import { ModalConfirmations } from './components/UX/ModalConfirmations'
 import { PrivateRoute } from './Routes/PrivateRoute'
+import { Presentation } from './pages/Presentation'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -72,7 +73,6 @@ return (
 }>
 
 
-
 <Router>
  
     {!changePath  && (
@@ -93,6 +93,7 @@ return (
         <Route path="/forgotpassword/confirmation"  component={ConfirmationPasswordaModal}/>
 
         <Route path="/" exact component={Articles} />
+        <Route path="/pres" exact component={Presentation} />
         <Route path="/articles/exercises"  component={ExercisesArticles} />
         <Route path="/articles/healthyfood"  component={HealtyFoodArticle} />
         <PrivateRoute path="/articles/createarticle"  component={CreateArticle} isLoged={isLoged}/>
