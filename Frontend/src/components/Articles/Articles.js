@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import { Redirect } from "react-router-dom"
 import styled from "styled-components"
 import getActiveArticles from "../../API/getActiveArticles"
 import { articles } from "../../assess/mock"
@@ -26,37 +27,48 @@ align-items: center;
 const Articles = () => {
 
   
-   const {articlesStorage, setArticles} = useStorage()
+   const {articlesStorage, setArticles, setChangePath} = useStorage()
    
-   
+   console.log(articlesStorage)
+    
    useEffect(()=>{
-   setArticles()
-
+     setArticles()
+     setChangePath(false)
 
    },[])
 
 
-  const {isLoading, setisLoading} = useStorage() 
+  const {isLoading, setisLoading, selectArticle,selectedArticle} = useStorage() 
   
   const elementref =  useRef()
   
- 
+ // selectArticle(false)
+
+  // useEffect(()=> {
+  //    console.log(selectedArticle)
+  //  
+  // },[selectedArticle])
+
+
+  if(selectedArticle){
+    return <Redirect to={`/articles/${selectedArticle} `} />
+  }
    
   
  return(
 
      <ArticlesRun >
    
-     { 
-      articlesStorage.length > 0 ? (
+    { 
+     articlesStorage.length > 0 ? (
 
           articlesStorage.map(( article ) => (
-          <ArticleSingle  key={article.id} article={article}/>
+          <ArticleSingle  key={article._id} article={article}  />
           
          ))
         ) : <p>   no articles yet</p>
        }
-
+     
      </ArticlesRun>
  )
 

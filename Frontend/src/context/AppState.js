@@ -4,7 +4,7 @@ import { getCommentsByArticle } from "../API/getCommentsByArticles";
 import AppContext from "./app-context";
 import { appReducer } from "./app-reducer";
 
-import { SET_ARTICLES,SET_COMMENTS,NEW_COMMENT, SET_CHANGE_PATH, SET_DIFERENT_PASSWORD, SET_IS_LOADING, SET_LOGIN_ERROR } from "./types"
+import { SET_ARTICLES,SELECT_ARTICLE, SET_COMMENTS,NEW_COMMENT, SET_CHANGE_PATH, SET_DIFERENT_PASSWORD, SET_IS_LOADING, SET_LOGIN_ERROR } from "./types"
 
 
 export const AppState = (props) => {
@@ -15,6 +15,7 @@ export const AppState = (props) => {
     errorLogin: false,
     diferentPassword: false,
     articles: [],
+    selectedarticle:false,
    
     token: null,
  
@@ -74,6 +75,16 @@ export const AppState = (props) => {
 
    }
    
+  const selectArticle = async(article) => {
+    
+     
+
+    dispatch({
+      type:SELECT_ARTICLE,
+      payload:article
+    })
+
+  } 
  
  
 
@@ -91,6 +102,8 @@ export const AppState = (props) => {
         setDiferentPassword,
         articlesStorage: state.articles,
         setArticles,
+        selectedArticle:state.selectedarticle,
+        selectArticle
        
        
 

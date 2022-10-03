@@ -8,10 +8,11 @@ import MyLoader from '../UX/Loader';
 import { getLikesByArticles } from '../../API/getLikesByArticle';
 import { CommentScreen } from './CommentScreen';
 import { ModalEditComment } from '../UX/ModalConfirmationDelete';
+import { useStorage } from '../../context/useStorage';
 
 
 
-const ArticleViewPreview = styled.div`
+export const ArticleViewPreview = styled.div`
    align-items: center;
  
    display: flex;
@@ -28,7 +29,7 @@ const ArticleViewPreview = styled.div`
 `
 
 
-const ArticleView = styled.div`
+export const ArticleView = styled.div`
 
   align-items: center;
   box-shadow: 5px 5px 20px rgb(146, 146, 145);
@@ -38,7 +39,7 @@ const ArticleView = styled.div`
    
 `
 
-const ArticleTitle = styled.h1`
+export const ArticleTitle = styled.h1`
    font-family: 'Indie Flower', cursive;
    width: 100%;
    text-align: center;
@@ -50,7 +51,7 @@ const ArticleTitle = styled.h1`
 
 `
 
-const ArticleImg = styled.img`
+export const ArticleImg = styled.img`
   border-radius: 30px;
   
   width: 80%;
@@ -61,7 +62,7 @@ const ArticleImg = styled.img`
    }  
 
 `
-const ArticleAuthor = styled.span`
+export const ArticleAuthor = styled.span`
   font-size: 1.3em;
   
   align-self: flex-end;
@@ -72,13 +73,13 @@ const ArticleAuthor = styled.span`
     font-size: 1.5em;
   }
 `
-const DivTags = styled.div`
+export const DivTags = styled.div`
   display: flex;
   flex-flow: row;
 
 `
 
-const Tag = styled.a`
+export const Tag = styled.a`
  color: green;
  
  font-size: 1.9em;
@@ -87,7 +88,7 @@ const Tag = styled.a`
 
 `
 
-const Articledescription = styled.p`
+export const Articledescription = styled.p`
   color: black;
   font-family: 'Indie Flower', cursive;
   
@@ -104,7 +105,7 @@ const Articledescription = styled.p`
 
 `
 
-const LikeDiv = styled.div`
+export const LikeDiv = styled.div`
    width: auto;
    display: flex;
    flex-flow: row;
@@ -114,7 +115,7 @@ const LikeDiv = styled.div`
 ` 
 
 
-const LikeButton = styled.button`
+export const LikeButton = styled.button`
  width: 100px;
  height: 40px;
  
@@ -128,7 +129,7 @@ const LikeButton = styled.button`
 
 `
 
-const Likes = styled.span`
+export const Likes = styled.span`
   font-family: sans-serif, cursive;
   align-self: flex-start;
   margin-left: -21px;
@@ -143,7 +144,7 @@ const Likes = styled.span`
 
 ` 
 
-const LikesText = styled.p`
+ export const LikesText = styled.p`
  margin-left: 20px;
  font-size: 1.2em;
  font-family: 'Akaya Telivigala',sans-serif;
@@ -159,6 +160,11 @@ const LikesText = styled.p`
    const elementref =  useRef() 
    const {likes,setLikes,thanks, addLike} = useArtcicle()
    const userToken = localStorage.getItem('userToken')
+  
+   const [articleid,setarticleid] = useState(false)
+    const {selectedArticle,selectArticle} = useStorage()
+   
+    console.log('here')
 
    useEffect(()=> {
      
@@ -180,18 +186,19 @@ const LikesText = styled.p`
    })
  
 
-   useEffect(async()=> {
-     
-     const likesFound = await getLikesByArticles(article)
-     setLikes(likesFound)
+//  useEffect(async()=> {
+//    
+//    const likesFound = await getLikesByArticles(article)
+//    setLikes(likesFound)
+//  
+//console.log('problem here!!')
+//  },[likes])
+  
    
-
-   },[likes])
-
 
    return(
    
-    <ArticleViewPreview ref={elementref} key={key}>
+    <ArticleViewPreview ref={elementref} key={key} onClick={()=>{ selectArticle(article._id);   }}>
    
    { 
     

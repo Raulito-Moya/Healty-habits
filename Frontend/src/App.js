@@ -20,6 +20,8 @@ import { ConfirmationPasswordaModal } from './components/Auth/ConfimationPasswor
 import { ModalConfirmations } from './components/UX/ModalConfirmations'
 import { PrivateRoute } from './Routes/PrivateRoute'
 import { Presentation } from './pages/Presentation'
+import { ArticleSingle } from './components/Articles/ArticleSingle'
+import { Articlebyid } from './components/Articles/Articlebyid'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -92,8 +94,9 @@ return (
         <Route path="/forgotpassword/form" component={ForgotPasswordForm}/>
         <Route path="/forgotpassword/confirmation"  component={ConfirmationPasswordaModal}/>
 
-        <Route path="/" exact component={Articles} />
-        <Route path="/pres" exact component={Presentation} />
+        <Route path="/" exact component={Presentation} />
+        <Route path="/articles" exact component={Articles} />
+        <Route path="/articles/:articleid" exact component={Articlebyid} />
         <Route path="/articles/exercises"  component={ExercisesArticles} />
         <Route path="/articles/healthyfood"  component={HealtyFoodArticle} />
         <PrivateRoute path="/articles/createarticle"  component={CreateArticle} isLoged={isLoged}/>

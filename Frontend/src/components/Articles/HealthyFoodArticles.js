@@ -27,7 +27,7 @@ const HealtyFoodArticle = () => {
   
   return(
   <div>
-     <BackLinkbuttom to="/">Atras</BackLinkbuttom>
+     <BackLinkbuttom to="/articles">Back</BackLinkbuttom>
  
    <ArticlesRun>
     { 

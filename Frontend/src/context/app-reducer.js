@@ -1,4 +1,4 @@
-import { SET_ARTICLES, SET_COMMENTS,NEW_COMMENT, SET_CHANGE_PATH, SET_DIFERENT_PASSWORD, SET_IS_LOADING, SET_LOGIN_ERROR } from "./types"
+import { SET_ARTICLES,SELECT_ARTICLE, SET_COMMENTS,NEW_COMMENT, SET_CHANGE_PATH, SET_DIFERENT_PASSWORD, SET_IS_LOADING, SET_LOGIN_ERROR } from "./types"
 
 
 
@@ -24,6 +24,12 @@ export const appReducer = (state, action) => {
         return{
           ...state,
           articles: action.payload
+        }  
+
+      case SELECT_ARTICLE:
+        return{
+          ...state,
+          selectedarticle: action.payload
         }  
         
         //Comments

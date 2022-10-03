@@ -6,6 +6,7 @@ import menuicon from '../img/menu-icon.svg'
 import strong from '../img/presentation/strong.png'
 import meat from '../img/presentation/meat.png'
 import fitness from '../img/presentation/fitness.png'
+import { Link } from 'react-router-dom'
 
 export const Presentation = () => {
 
@@ -37,9 +38,9 @@ export const Presentation = () => {
        </header>
  
        
-         <ul className={menu ? 'navbar' : 'navbar-open'}>
-           <li>Login</li>
-           <li>Articles</li>
+         <ul className={!menu ? 'navbar' : 'navbar-open'}>
+           <Link to={'/login'}>Login </Link >
+           <Link to={'/articles'}>Articles</Link>
           
          </ul>
        
@@ -56,8 +57,8 @@ export const Presentation = () => {
                 <div className="Card">
                   <div className="CardContent">
                   <img src={fitness} alt="" className='cardimg' />
-                    <h1>Hellodada adadac</h1>
-                    <p>dadadasddadlkmddkldadadada dada sddas daddd</p>
+                    <h1>Good Habits in Life</h1>
+                    <p>These are actions that you do every day that help create synergys in life with other areas or bettween them</p>
 
                   </div>
                     
@@ -65,16 +66,18 @@ export const Presentation = () => {
                 <div className="Card">
                    <div className="CardContent">
                       <img src={strong} alt=""/>
-                     <h1>We make the difference</h1>
-                     <p>dadadasddadlkmddkldadadada dada sddas daddd</p>
+                     <h1>+=======+</h1>
+                         <h2>🌀</h2>  
+                         <h2>SYNERGY</h2> 
+                     <h1> ======= </h1>
                    </div>
                 
                 </div>
                 <div className="Card">
                 <div className="CardContent"> 
                   <img src={meat} alt=""/>
-                  <h1>We make the diference</h1>
-                  <p>dkasndlasdsad d  ddladlandald adadljnadnladnad dalddnadnadan</p>
+                  <h1>Invest your Energy</h1>
+                  <p>Where you dicede put your energy and free time </p>
                 </div>
                 </div>
              </div>

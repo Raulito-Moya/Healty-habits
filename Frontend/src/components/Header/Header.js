@@ -123,11 +123,12 @@ const ListNav = styled.div`
  export const ListItem = styled(Link)`
   text-decoration: none;
    margin-top: 70px;
-   font-size: 2em;
-
+   font-size: 20px;
+   color:black;
    margin-top: 20px;
-   
- 
+   display:flex ;
+  
+
    &:hover{
     transform: scale(1.1);
   }
@@ -137,16 +138,17 @@ const SelectLinkTable = styled.ul`
    display: ${(props) => (props.openItem === true ? 'flex' : 'none')};
    position:absolute ;
    top:60px;
-   left: 15px;
+   left: 55px;
    background-color:aliceblue ;
    flex-flow: column;
    width:auto ;
-   
+   padding:0px ;
    transition: all 1.5s ease;
-  & > :any-link{
-     margin-left: 20px;
-     color: greenyellow;
-  }
+     & > :any-link{
+        margin-left: 20px;
+        color: black;
+        
+     }
 `
 
 const SelectLinkTableLogin = styled(SelectLinkTable)`
@@ -176,14 +178,12 @@ const {NavisOpen,BottomText,openNav, GoArticles, openItem,GoLogin} = useHeader()
       
      <NavWrapper navisOpen ={NavisOpen} onBlur={openNav}>
        <ListNav>
-       <ListItem  onClick={()=> {openItem('article')}}> <img src={exercise} alt=""/></ListItem  >
+       <ListItem  onClick={()=> {openItem('article')}}> <img src={exercise} alt=""/> <h4>Section</h4></ListItem  >
          <SelectLinkTable openItem = {GoArticles} >
             <ListItem  to='/articles/exercises'>Exercises </ListItem  >
             <ListItem to='/articles/healthyfood' >Eat Well!! </ListItem  >
          </SelectLinkTable >
-         <ListItem  >Features </ListItem  >
-         <ListItem  > <img src={contact} alt=""/></ListItem  >
-         <ListItem   onClick={ ()=> {openItem('login')} }> <img src={login} alt=""/></ListItem  >
+         <ListItem   onClick={ ()=> {openItem('login')} }> <img src={login} alt=""/> <h4>Register</h4></ListItem  >
           <SelectLinkTableLogin openLogin = {GoLogin} >
              <ListItem  to='/articles/exercises'>Login </ListItem  >
              <ListItem to='/articles/healthyfood' >Register </ListItem  >
