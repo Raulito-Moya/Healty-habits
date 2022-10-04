@@ -1,9 +1,11 @@
-import react, { Fragment, useState } from 'react'
+import react, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import postNewArticle from '../../API/postNewArticle'
 import useCreateArticle from '../../Hooks/useCreateArticle'
 import { useForm } from 'react-hook-form'
 import { LoaderSpinner } from '../UX/LoaderSpiner'
+import { Quill } from '../ReactQuill/Quill'
+import ReactQuill from 'react-quill'
 
 
 
@@ -168,12 +170,18 @@ const ImgSelected = styled.img`
 
 `
 
-const TextAreaTitle = ({register, errors}) => {
+const TextAreaTitle = ({value,change, errors}) => {
   
   return(
         <div className="item1" >
            
-         <TextArea type="text" placeholder="title.." name="title"     {...register("title", {required:true,pattern:/\S+$/,message:"should be 2 length"})} />
+           <ReactQuill  theme="bubble"  style={{border: '5px  solid',
+              borderRadius: '20px',
+              fontSize: '30px',
+              textAlign: 'center',
+              width: '100%',
+              height: '100%' } } value={value} onChange={change} 
+              placeholder='Title'/>
          {errors.title && <ErrorMessage>the title should be correct</ErrorMessage>}
        </div>
   )
@@ -182,13 +190,19 @@ const TextAreaTitle = ({register, errors}) => {
 
 
 
-const TextAreaContent = ({register, errors}) => {
-  
+const TextAreaContent = ({value,change, errors}) => {
+console.log(errors)
   return(
         <div className="item2">
            
-         <TextArea type="text" placeholder="content.." name="content"    {...register("content", {required:true,pattern:/\S+$/,message:"should be 10 length"})} />
-         {errors.content && <ErrorMessage>the content should be correct</ErrorMessage>}
+           <ReactQuill  theme="bubble"  style={{border: '5px  solid',
+              borderRadius: '20px',
+              fontSize: '30px',
+              textAlign: 'center',
+              width: '100%',
+              height: '100%' } } value={value} onChange={change} 
+              placeholder='content'/>
+           {errors.content && <ErrorMessage>the content should be correct</ErrorMessage>}
        </div>
   )
 
@@ -228,20 +242,36 @@ const TextAreaCategory = ({register, errors}) => {
 
 const CreateArticle = () => { 
   const select = document.getElementById('form')
-
-   const {file, formValues, handleFileChange, register, handleSubmit,onSubmit, errors, isFormLoading, wasPublished} =  useCreateArticle({select})
   
- 
+   const {file, handleFileChange, register,watch,setValue, handleSubmit,onSubmit, errors, isFormLoading, wasPublished} =  useCreateArticle({select})
+   
+  const {formValues, handleInputChange, reset} = useForm()
+   
+  useEffect(() => {
+    register("title", { required: true, minLength: 11 });
+    register("content", { required: true, minLength: 11 });
+  }, [register]);
+  
+
  //console.log(errors);
+ const onTitleStateChange = (titleState) => {
+  setValue("title", titleState);
+};
+const title = watch("title");
 
- 
+   const onContentStateChange = (contentState) => {
+    setValue("content", contentState);
+  };
+  const content = watch("content");
   
+
+
  return(
     <CreateArticleForm  enctype="multipart/form-data" id='form' onSubmit={handleSubmit(onSubmit) } errors={errors}>
        <Introductionh1>Build your Article </Introductionh1>
-       <TextAreaTitle register={register} errors={errors}  />
-       <TextAreaContent register={register} errors={errors}  />
-       <DivimgSelected className="item3" errors={errors} >
+       <TextAreaTitle value={title} change={onTitleStateChange} errors={errors}  />
+       <TextAreaContent value={content} change={onContentStateChange} errors={errors}/>
+        <DivimgSelected className="item3" errors={errors} >
           <CreateArticleInput  type="file" pleaceholder="Content"  name="image"  {...register('image',{required:true})} errors={errors} onChange={handleFileChange}/>
           {file ?  <ImgSelected src={file}/> : <p style={{textAlign:'center', fontSize:'1.2em'}}>Select one picture</p>}
           {errors.content && <ErrorMessage>Select a image for your article please</ErrorMessage>}

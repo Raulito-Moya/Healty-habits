@@ -15,7 +15,7 @@ const useCreateArticle = ({select}) => {
   console.log(file);
 
 
-  const { register, handleSubmit,watch, formState: { errors } }= useForm({
+  const { register, handleSubmit,watch, formState: { errors },setValue }= useForm({
     mode: "onBlur",
   });
 
@@ -48,7 +48,7 @@ const useCreateArticle = ({select}) => {
    
 
 
-    return {register, handleSubmit, onSubmit, errors,  file, handleFileChange, isFormLoading, wasPublished}
+    return {register, handleSubmit, onSubmit, errors,  file,watch,setValue, handleFileChange, isFormLoading, wasPublished}
 
 }
 

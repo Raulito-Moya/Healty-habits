@@ -15,7 +15,7 @@ export const Articlebyid = ({ history , match}) => {
 
    // const articlefinded = articlesStorage.filter((article) =>  article._id == articleid )
  
-   const article = useMemo(()=> getarticlebyid(articleid),[])
+   const article = useMemo(()=> getarticlebyid(articleid),[articleid])
   
    function getarticlebyid(){
      
@@ -32,7 +32,7 @@ export const Articlebyid = ({ history , match}) => {
 
   return (
     <>
-      <ArticleSingle article={article} key={article._id}/>
+      <ArticleSingle article={article} key={articleid}/>
     </>
     )
 }

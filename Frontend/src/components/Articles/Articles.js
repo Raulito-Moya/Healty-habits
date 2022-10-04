@@ -34,7 +34,7 @@ const Articles = () => {
    useEffect(()=>{
      setArticles()
      setChangePath(false)
-
+     selectArticle(false)
    },[])
 
 
@@ -51,7 +51,7 @@ const Articles = () => {
 
 
   if(selectedArticle){
-    return <Redirect to={`/articles/${selectedArticle} `} />
+    return <Redirect to={`/article/${selectedArticle} `} />
   }
    
   

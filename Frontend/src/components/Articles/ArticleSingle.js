@@ -198,7 +198,7 @@ export const Likes = styled.span`
 
    return(
    
-    <ArticleViewPreview ref={elementref} key={key} onClick={()=>{ selectArticle(article._id);   }}>
+    <ArticleViewPreview ref={elementref} key={key} >
    
    { 
     
@@ -217,7 +217,8 @@ export const Likes = styled.span`
            }
           
        </DivTags>
-       <Articledescription>{article.content}</Articledescription>
+       <Articledescription>{article.content}  <button type="" onClick={()=>{ selectArticle(article._id);   }}>more....</button></Articledescription>
+      
        <ArticleAuthor> By <strong>{article.author}</strong> </ArticleAuthor>
        
          <LikeDiv>

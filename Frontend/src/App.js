@@ -22,6 +22,7 @@ import { PrivateRoute } from './Routes/PrivateRoute'
 import { Presentation } from './pages/Presentation'
 import { ArticleSingle } from './components/Articles/ArticleSingle'
 import { Articlebyid } from './components/Articles/Articlebyid'
+import { Quill } from './components/ReactQuill/Quill'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -96,10 +97,11 @@ return (
 
         <Route path="/" exact component={Presentation} />
         <Route path="/articles" exact component={Articles} />
-        <Route path="/articles/:articleid" exact component={Articlebyid} />
-        <Route path="/articles/exercises"  component={ExercisesArticles} />
-        <Route path="/articles/healthyfood"  component={HealtyFoodArticle} />
-        <PrivateRoute path="/articles/createarticle"  component={CreateArticle} isLoged={isLoged}/>
+        <Route path="/article/:articleid"  component={Articlebyid} />
+        <Route path="/articles/exercises" exact component={ExercisesArticles} />
+        <Route path="/articles/healthyfood" exact component={HealtyFoodArticle} />
+        <Route path="/quill" exact component={Quill} />
+        <PrivateRoute path="/articles/createarticle" exact component={CreateArticle} isLoged={isLoged}/>
         <Route path = "*" component={Articles} />
      </Switch>
 
