@@ -23,7 +23,7 @@ import { Presentation } from './pages/Presentation'
 import { ArticleSingle } from './components/Articles/ArticleSingle'
 import { Articlebyid } from './components/Articles/Articlebyid'
 import { Quill } from './components/ReactQuill/Quill'
-
+import './styles.css'
 
 const GlobalStyle = createGlobalStyle`
   body {

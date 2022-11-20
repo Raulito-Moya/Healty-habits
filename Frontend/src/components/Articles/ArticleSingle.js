@@ -9,6 +9,7 @@ import { getLikesByArticles } from '../../API/getLikesByArticle';
 import { CommentScreen } from './CommentScreen';
 import { ModalEditComment } from '../UX/ModalConfirmationDelete';
 import { useStorage } from '../../context/useStorage';
+import { BackLinkbuttom } from './ExerciseArticles';
 
 
 
@@ -100,7 +101,8 @@ export const Articledescription = styled.p`
   width: 95%;
   
   line-height: 1.5em;
-  
+  height: 1em;
+  overflow: hidden;
 
 
 `
@@ -162,6 +164,7 @@ export const Likes = styled.span`
    const userToken = localStorage.getItem('userToken')
   
    const [articleid,setarticleid] = useState(false)
+   
     const {selectedArticle,selectArticle} = useStorage()
    
     console.log('here')
@@ -186,40 +189,59 @@ export const Likes = styled.span`
    })
  
 
-//  useEffect(async()=> {
-//    
-//    const likesFound = await getLikesByArticles(article)
-//    setLikes(likesFound)
-//  
-//console.log('problem here!!')
-//  },[likes])
-  
+
+ 
+  const queryString = window.location.href;
+  const urlParams = queryString.substring(queryString.lastIndexOf('/') + 1);
+
+  console.log('params',urlParams)
+    
+  let htmlreg = new RegExp(/(<([^>]+)>)/i)
+   console.log('regexp',htmlreg.test('<h1>hello word</h1>'))
+
    
+   let ConvertStringToHTML = function (str) {
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(str, 'text/html');
+    console.log(doc.body.button)
+    return doc.body;
+ };
+  
+   console.log(ConvertStringToHTML('<h1>Hello Word</h1><h2>  IN this article ....</h2><p><br></p><h1><strong>We willl be talking about ...</strong></h1>')) 
 
    return(
-   
+    
     <ArticleViewPreview ref={elementref} key={key} >
-   
+    
    { 
     
     show ?  
     <ArticleView  key={key}>
-     
-      <ArticleTitle>{article.title}</ArticleTitle>
+     { selectedArticle && ( <BackLinkbuttom to="/articles" onClick={()=>{ selectArticle(false) }}>Back</BackLinkbuttom>) } 
+      <ArticleTitle  dangerouslySetInnerHTML={{ __html: article.title }}></ArticleTitle>
       <ArticleImg src={article.img}/>
-      
+     
        <DivTags>
            { 
              article.tags.map(tag => (
                
-                <Tag>{tag}</Tag>
+                <Tag  dangerouslySetInnerHTML={{ __html: tag }}></Tag>
              ))
            }
           
        </DivTags>
-       <Articledescription>{article.content}  <button type="" onClick={()=>{ selectArticle(article._id);   }}>more....</button></Articledescription>
+       <p className={!selectedArticle ?  'hideContent' : 'showContent'} dangerouslySetInnerHTML={{ __html:article.content}}>
+          
+       </p>
       
-       <ArticleAuthor> By <strong>{article.author}</strong> </ArticleAuthor>
+       
+       
+       {
+          !selectedArticle && ( <button type="" onClick={()=>{ selectArticle(article._id);   }}>more....</button>  ) 
+           
+          
+        } 
+       <ArticleAuthor  > By <strong dangerouslySetInnerHTML={{ __html:article.author}}></strong> </ArticleAuthor>
        
          <LikeDiv>
            <LikeButton type='button' onClick={() => { userToken ?  addLike(article) : alert('please register your account for give us a like')}} /> 

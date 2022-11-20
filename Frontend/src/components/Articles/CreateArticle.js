@@ -208,12 +208,18 @@ console.log(errors)
 
 }
 
-const TextAreaTags = ({register, errors}) => {
+const TextAreaTags = ({value,change, errors}) => {
   
   return(
         <div className="item4">
-          <TextArea type="text" placeholder="tags..ej:#healty #healtyfood" name="tags"    {...register("tags", {required:true,pattern:/(\#\w+(\s?)+)+/,message:"should be 10 length"})} />
-          {errors.tags && <ErrorMessage>the tags should be correct</ErrorMessage>}
+              <ReactQuill  theme="bubble"  style={{border: '5px  solid',
+              borderRadius: '20px',
+              fontSize: '30px',
+              textAlign: 'center',
+              width: '100%',
+              height: '100%' } } value={value} onChange={change} 
+              placeholder='content'/>
+           {errors.content && <ErrorMessage>the content should be correct</ErrorMessage>}
        </div>
   )
 
@@ -264,7 +270,10 @@ const title = watch("title");
   };
   const content = watch("content");
   
-
+  const ontagsStateChange = (contentState) => {
+    setValue("tags", contentState);
+  };
+  const tags = watch("tags");
 
  return(
     <CreateArticleForm  enctype="multipart/form-data" id='form' onSubmit={handleSubmit(onSubmit) } errors={errors}>
@@ -278,7 +287,7 @@ const title = watch("title");
        </DivimgSelected>
       
        
-       <TextAreaTags register={register} errors={errors} />
+       <TextAreaTags value={tags} change={ontagsStateChange} errors={errors}/>
        <TextAreaCategory register={register}/>
        
        {isFormLoading && <LoaderSpinner className='item6' data-testid="spinner" small />}

@@ -1,0 +1,33 @@
+.hideContent {
+    color: black;
+    font-family: 'Indie Flower', cursive;
+    
+    font-size: 1.7em;
+     
+   
+    letter-spacing: 4px;
+    
+    width: 95%;
+    
+    line-height: 1em;
+    height: 1em;
+    overflow: hidden;
+}
+
+
+
+.showContent {
+    color: black;
+    font-family: 'Indie Flower', cursive;
+    
+    font-size: 1.7em;
+     
+   
+    letter-spacing: 4px;
+    
+    width: 95%;
+    
+    line-height: 1em;
+    height: auto;
+    
+}

@@ -12,15 +12,15 @@ const postNewArticle = async(formValues, file, select,setisformLoading, setwasPu
 
     
     const {title, content, tags} = formValues
-    console.log(formValues);
+    console.log('form',formValues);
     const formData = new FormData(select)
      
-   // formData.append('title',title)
-   // formData.append('content',content)
-   // formData.append('image',file)
+    formData.append('title',title)
+    formData.append('content',content)
+    formData.append('image',file)
     formData.append('author',author)
     //formData.append('category','Fit')
-    //formData.append('tags',tags)
+    formData.append('tags',tags)
     
 
      console.log(formData);

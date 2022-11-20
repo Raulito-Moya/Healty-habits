@@ -20,6 +20,7 @@ const useCreateArticle = ({select}) => {
   });
 
  const onSubmit =  async(data,e) => {
+  console.log('onsubmit',data)
     await setisformLoading(true)   
     await postNewArticle(data,file,select,setisformLoading,setwasPublished) 
       

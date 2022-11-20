@@ -8,6 +8,8 @@ import LoadingPage from "../UX/LoadingPage"
 import { ArticleSingle } from "./ArticleSingle"
 import { CommentScreen } from "./CommentScreen"
 
+
+
  export const ArticlesRun = styled.main`
   display: flex;
   width: 100%;
@@ -42,12 +44,7 @@ const Articles = () => {
   
   const elementref =  useRef()
   
- // selectArticle(false)
-
-  // useEffect(()=> {
-  //    console.log(selectedArticle)
-  //  
-  // },[selectedArticle])
+ 
 
 
   if(selectedArticle){

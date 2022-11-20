@@ -185,8 +185,8 @@ const {NavisOpen,BottomText,openNav, GoArticles, openItem,GoLogin} = useHeader()
          </SelectLinkTable >
          <ListItem   onClick={ ()=> {openItem('login')} }> <img src={login} alt=""/> <h4>Register</h4></ListItem  >
           <SelectLinkTableLogin openLogin = {GoLogin} >
-             <ListItem  to='/articles/exercises'>Login </ListItem  >
-             <ListItem to='/articles/healthyfood' >Register </ListItem  >
+             <ListItem  to='/login'>Login </ListItem  >
+             <ListItem to='/signup' >Register </ListItem  >
           </SelectLinkTableLogin >
        {isLoaged && <ListItem to="/articles/createarticle" > Create Article </ListItem  >}  
        </ListNav>

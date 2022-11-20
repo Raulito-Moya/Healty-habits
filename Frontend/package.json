@@ -43,5 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://healty-habits.herokuapp.com/"
+  "proxy": "http://localhost:7000/"
 }
